@@ -1,0 +1,11 @@
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="Gradle 1" modules="example-spark.example.main,example-spark.example.test,example-spark.emr.main,example-spark.emr.test">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <parameters>
+        <parameter value="-target:jvm-11" />
+      </parameters>
+    </profile>
+  </component>
+</project>
