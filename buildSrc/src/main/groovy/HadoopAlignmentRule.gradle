@@ -1,0 +1,13 @@
+import org.gradle.api.artifacts.ComponentMetadataContext
+import org.gradle.api.artifacts.ComponentMetadataRule
+
+abstract class HadoopAlignmentRule implements ComponentMetadataRule {
+    void execute(ComponentMetadataContext ctx) {
+        ctx.details.with {
+            if (id.group.startsWith("org.apache.hadoop")) {
+                // declare that Jackson modules all belong to the Jackson virtual platform
+                belongsTo("org.apache.hadoop:hadoop-virtual-platform:${id.version}")
+            }
+        }
+    }
+}   

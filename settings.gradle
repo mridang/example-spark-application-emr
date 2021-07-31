@@ -1,0 +1,3 @@
+rootProject.name = 'example-spark'
+include 'emr'
+include 'example'

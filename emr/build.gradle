@@ -1,0 +1,3182 @@
+plugins {
+    id 'myproject.java-conventions'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://s3.us-east-1.amazonaws.com/us-east-1-emr-artifacts/emr-6.1.0/repos/maven/"
+    }
+    maven {
+        url "https://maven.twttr.com/"
+    }
+}
+
+dependencies {
+    modules {
+        module('com.sun.jersey:jersey-server') {
+            //noinspection GradlePackageUpdate
+            replacedBy('org.glassfish.jersey.core:jersey-server')
+        }
+    }
+
+    api(group: 'org.eclipse.core', name: 'org.eclipse.core.commands') {
+        transitive = false
+        version {
+            strictly '3.6.0'
+        }
+    }
+    api(group: 'org.eclipse.jetty.aggregate', name: 'jetty-all') {
+        transitive = false
+        version {
+            strictly '9.3.24.v20180605'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-aws') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-annotations') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-auth') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-client') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-common') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-hdfs-client') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-common') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-jobclient') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-api') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-client') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-common') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-registry') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-server-common') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hadoop', name: 'hadoop-yarn-server-web-proxy') {
+        transitive = false
+        version {
+            strictly '3.2.1'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-beeline') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-cli') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-common') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-exec', classifier: 'core') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-jdbc') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-metastore') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-serde') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive.shims', name: 'hive-shims-0.23') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-shims') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive.shims', name: 'hive-shims-common') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive.shims', name: 'hive-shims-scheduler') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-vector-code-gen') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-column') {
+        transitive = false
+        version {
+            strictly '1.10.1'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-common') {
+        transitive = false
+        version {
+            strictly '1.10.1'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-encoding') {
+        transitive = false
+        version {
+            strictly '1.10.1'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-hadoop') {
+        transitive = false
+        version {
+            strictly '1.10.1'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-jackson') {
+        transitive = false
+        version {
+            strictly '1.10.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-catalyst_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-core_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-ganglia-lgpl_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-graphx_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-hive-thriftserver_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-hive_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-kvstore_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-launcher_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-mllib-local_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-mllib_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-network-common_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-network-shuffle_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-repl_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-sketch_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-sql_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-streaming_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-tags_${scalaVersion}", classifier: "tests") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-tags_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-unsafe_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.apache.spark', name: "spark-yarn_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-accessanalyzer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-acm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-acmpca') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-alexaforbusiness') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-amplify') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-api-gateway') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-apigatewaymanagementapi') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-apigatewayv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-appconfig') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-appflow') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-applicationautoscaling') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-applicationinsights') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-appmesh') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-appstream') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-appsync') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-athena') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-augmentedairuntime') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-autoscaling') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-autoscalingplans') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-backup') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-batch') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-braket') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-budgets') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-chime') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloud9') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-clouddirectory') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudformation') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudfront') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudhsm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudhsmv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudsearch') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudtrail') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudwatch') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cloudwatchmetrics') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-code-generator') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codeartifact') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codebuild') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codecommit') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codedeploy') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codegen-maven-plugin') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codeguruprofiler') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codegurureviewer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codepipeline') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codestar') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codestarconnections') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-codestarnotifications') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cognitoidentity') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cognitoidp') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-cognitosync') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-comprehend') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-comprehendmedical') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-computeoptimizer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-config') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-connect') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-connectparticipant') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-core') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-costandusagereport') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-costexplorer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-dataexchange') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-datapipeline') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-datasync') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-dax') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-detective') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-devicefarm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-directconnect') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-directory') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-discovery') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-dlm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-dms') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-docdb') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ebs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ec2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ec2instanceconnect') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ecr') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ecs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-efs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-eks') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticache') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticbeanstalk') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticinference') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticloadbalancing') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticloadbalancingv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elasticsearch') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-elastictranscoder') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-emr') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-eventbridge') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-events') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-fms') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-forecast') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-forecastquery') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-frauddetector') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-fsx') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-gamelift') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-glacier') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-globalaccelerator') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-glue') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-greengrass') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-groundstation') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-guardduty') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-health') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-honeycode') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iam') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-identitystore') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-imagebuilder') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-importexport') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-inspector') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iot') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iot1clickdevices') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iot1clickprojects') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotanalytics') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotevents') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ioteventsdata') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotjobsdataplane') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotsecuretunneling') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotsitewise') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-iotthingsgraph') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ivs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kafka') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kendra') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kinesis') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kinesisanalyticsv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kinesisvideo') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kinesisvideosignalingchannels') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-kms') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-lakeformation') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-lambda') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-lex') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-lexmodelbuilding') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-licensemanager') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-lightsail') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-logs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-machinelearning') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-macie') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-macie2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-managedblockchain') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-marketplacecatalog') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-marketplacecommerceanalytics') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-marketplaceentitlement') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-marketplacemeteringservice') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mechanicalturkrequester') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediaconnect') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediaconvert') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-medialive') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediapackage') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediapackagevod') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediastore') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediastoredata') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mediatailor') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-migrationhub') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-migrationhubconfig') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mobile') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-models') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-mq') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-neptune') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-networkmanager') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-opensdk') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-opsworks') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-opsworkscm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-organizations') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-outposts') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-personalize') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-personalizeevents') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-personalizeruntime') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-pi') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-pinpoint') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-pinpointemail') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-pinpointsmsvoice') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-polly') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-pricing') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-qldb') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-qldbsession') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-quicksight') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ram') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-rds') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-rdsdata') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-redshift') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-redshiftdataapi') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-rekognition') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-resourcegroups') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-resourcegroupstaggingapi') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-robomaker') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-route53') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-route53resolver') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-s3') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-s3control') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-s3outposts') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sagemaker') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sagemakerruntime') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-savingsplans') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-schemas') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-secretsmanager') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-securityhub') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-serverlessapplicationrepository') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-servermigration') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-servicecatalog') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-servicediscovery') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-servicequotas') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ses') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sesv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-shield') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-signer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-simpledb') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-simpleworkflow') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-snowball') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sns') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sqs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ssm') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sso') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ssoadmin') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-ssooidc') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-stepfunctions') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-storagegateway') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-sts') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-support') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-synthetics') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-test-utils') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-textract') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-timestreamquery') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-timestreamwrite') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-transcribe') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-transfer') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-translate') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-waf') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-wafv2') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-workdocs') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-worklink') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-workmail') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-workmailmessageflow') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-workspaces') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'aws-java-sdk-xray') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api(group: 'com.amazonaws', name: 'jmespath-java') {
+        transitive = false
+        version {
+            strictly '1.11.880'
+        }
+    }
+    api (group: 'org.apache.zookeeper', name: 'zookeeper') {
+        transitive = false
+        version {
+            strictly '3.4.14'
+        }
+    }
+
+    api (group: 'com.hadoop.gplcompression', name: 'hadoop-lzo') {
+        transitive = false
+        version {
+            strictly '0.4.19'
+        }
+    }
+//////    /usr/lib/spark/jars/emr-spark-goodies.jar
+////    api (group: 'com.amazon.emr', name: 'emr-goodies') {
+//        transitive = false
+    //version {
+//            strictly '3.1.0'
+//        }
+//    }
+//////    /usr/share/aws/emr/emrfs/lib/aws-glue-sdk-1.12.0.jar
+//////    /usr/share/aws/emr/emrfs/lib/emrfs-hadoop-assembly-2.44.0.jar
+////    
+//////    /usr/share/aws/emr/emrfs/lib/secret-agent-interface-1.3.0.jar
+////    api (group: 'com.amazonaws.emr', name: 'secret-agent-interface') {
+//        transitive = false
+    //version {
+//            strictly '3.1.0'
+//        }
+//    }
+//////    /usr/share/aws/emr/goodies/lib/emr-spark-goodies.jar
+//////    /usr/share/aws/emr/s3select/lib/emr-s3-select-spark-connector.jar
+////    api (group: 'com.amazonaws.emr.s3select', name: 'emr-s3-select-connector') {
+//        transitive = false
+    //version {
+//            strictly '2.0.0'
+//        }
+//    }
+//////    /usr/share/aws/hmclient/lib/aws-glue-datacatalog-spark-client.jar
+////    api (group: 'com.amazonaws.glue', name: 'aws-glue-datacatalog-spark-client') {
+//        transitive = false
+    //version {
+//            strictly '4.0.0'
+//        }
+//    }
+//////    /usr/share/aws/sagemaker-spark-sdk/lib/sagemaker-spark-sdk.jar
+////    api (group: 'com.amazonaws', name: 'sagemaker-spark') {
+//        transitive = false
+    //version {
+//            strictly 'spark_3.0.1-amzn-0-1.4.1'
+//        }
+//    }
+//////    /usr/share/java/Hive-JSON-Serde/hive-openx-serde.jar
+
+    api(group: 'com.zaxxer', name: 'HikariCP') {
+        transitive = false
+        version {
+            strictly "2.5.1"
+        }
+    }
+    api(group: 'pl.edu.icm', name: 'JLargeArrays') {
+        transitive = false
+        version {
+            strictly '1.5'
+        }
+    }
+    api(group: 'com.github.wendykierp', name: 'JTransforms') {
+        transitive = false
+        version {
+            strictly '3.1'
+        }
+    }
+    api(group: 'org.roaringbitmap', name: 'RoaringBitmap') {
+        transitive = false
+        version {
+            strictly '0.7.45'
+        }
+    }
+    api(group: 'org.antlr', name: 'ST4') {
+        transitive = false
+        version {
+            strictly '4.0.4'
+        }
+    }
+    api(group: 'net.minidev', name: 'accessors-smart') {
+        transitive = false
+        version {
+            strictly '1.2'
+        }
+    }
+    api(group: 'javax.activation', name: 'activation') {
+        transitive = false
+        version {
+            strictly '1.1.1'
+        }
+    }
+    api(group: 'io.airlift', name: 'aircompressor') {
+        transitive = false
+        version {
+            strictly '0.10'
+        }
+    }
+    api(group: 'org.typelevel', name: "algebra_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '2.0.0-M2'
+        }
+    }
+    api(group: 'org.antlr', name: 'antlr-runtime') {
+        transitive = false
+        version {
+            strictly '3.5.2'
+        }
+    }
+    api(group: 'org.antlr', name: 'antlr4-runtime') {
+        transitive = false
+        version {
+            strictly '4.7.1'
+        }
+    }
+    api(group: 'aopalliance', name: 'aopalliance') {
+        transitive = false
+        version {
+            strictly '1.0'
+        }
+    }
+    api(group: 'org.glassfish.hk2.external', name: 'aopalliance-repackaged') {
+        transitive = false
+        version {
+            strictly '2.6.1'
+        }
+    }
+    api(group: 'net.sourceforge.f2j', name: 'arpack_combined_all') {
+        transitive = false
+        version {
+            strictly '0.1'
+        }
+    }
+    api(group: 'org.apache.arrow', name: 'arrow-format') {
+        transitive = false
+        version {
+            strictly '0.15.1'
+        }
+    }
+    api(group: 'org.apache.arrow', name: 'arrow-memory') {
+        transitive = false
+        version {
+            strictly '0.15.1'
+        }
+    }
+    api(group: 'org.apache.arrow', name: 'arrow-vector') {
+        transitive = false
+        version {
+            strictly '0.15.1'
+        }
+    }
+    api(group: 'dk.brics.automaton', name: 'automaton') {
+        transitive = false
+        version {
+            strictly '1.11-8'
+        }
+    }
+    api(group: 'org.apache.avro', name: 'avro') {
+        transitive = false
+        version {
+            strictly '1.8.2'
+        }
+    }
+    api(group: 'org.apache.avro', name: 'avro-ipc') {
+        transitive = false
+        version {
+            strictly '1.8.2'
+        }
+    }
+    api(group: 'org.apache.avro', name: 'avro-mapred') {
+        transitive = false
+        version {
+            strictly '1.8.2'
+        }
+    }
+    api(group: 'org.bouncycastle', name: 'bcpkix-jdk15on') {
+        transitive = false
+        version {
+            strictly "1.60"
+        }
+    }
+    api(group: 'org.bouncycastle', name: 'bcprov-jdk15on') {
+        transitive = false
+        version {
+            strictly '1.60'
+        }
+    }
+    api(group: 'com.jolbox', name: 'bonecp') {
+        transitive = false
+        version {
+            strictly '0.8.0.RELEASE'
+        }
+    }
+    api(group: 'org.scalanlp', name: "breeze-macros_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '1.0'
+        }
+    }
+    api(group: 'org.scalanlp', name: "breeze_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '1.0'
+        }
+    }
+    api(group: 'org.typelevel', name: "cats-kernel_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '2.0.0-M4'
+        }
+    }
+    api(group: 'com.twitter', name: 'chill-java') {
+        transitive = false
+        version {
+            strictly '0.9.5'
+        }
+    }
+    api(group: 'com.twitter', name: "chill_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.9.5'
+        }
+    }
+    api(group: 'commons-beanutils', name: 'commons-beanutils') {
+        transitive = false
+        version {
+            strictly '1.9.4'
+        }
+    }
+    api(group: 'commons-cli', name: 'commons-cli') {
+        transitive = false
+        version {
+            strictly '1.2'
+        }
+    }
+    api(group: 'commons-codec', name: 'commons-codec') {
+        transitive = false
+        version {
+            strictly '1.10'
+        }
+    }
+    api(group: 'commons-collections', name: 'commons-collections') {
+        transitive = false
+        version {
+            strictly '3.2.2'
+        }
+    }
+    api(group: 'org.codehaus.janino', name: 'commons-compiler') {
+        transitive = false
+        version {
+            strictly '3.0.16'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-compress') {
+        transitive = false
+        version {
+            strictly '1.8.1'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-configuration2') {
+        transitive = false
+        version {
+            strictly '2.1.1'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-crypto') {
+        transitive = false
+        version {
+            strictly '1.1.0'
+        }
+    }
+    api(group: 'commons-daemon', name: 'commons-daemon') {
+        transitive = false
+        version {
+            strictly '1.0.13'
+        }
+    }
+    api(group: 'commons-dbcp', name: 'commons-dbcp') {
+        transitive = false
+        version {
+            strictly '1.4'
+        }
+    }
+    api(group: 'commons-io', name: 'commons-io') {
+        transitive = false
+        version {
+            strictly '2.4'
+        }
+    }
+    api(group: 'org.netbeans.external', name: 'org-apache-commons-lang') {
+        transitive = false
+        version {
+            strictly 'RELEASE113'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-lang3') {
+        transitive = false
+        version {
+            strictly '3.9'
+        }
+    }
+    api(group: 'commons-logging', name: 'commons-logging') {
+        transitive = false
+        version {
+            strictly '1.1.3'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-math3') {
+        transitive = false
+        version {
+            strictly '3.4.1'
+        }
+    }
+    api(group: 'commons-net', name: 'commons-net') {
+        transitive = false
+        version {
+            strictly '3.1'
+        }
+    }
+    api(group: 'commons-pool', name: 'commons-pool') {
+        transitive = false
+        version {
+            strictly '1.5.4'
+        }
+    }
+    api(group: 'org.apache.commons', name: 'commons-text') {
+        transitive = false
+        version {
+            strictly '1.6'
+        }
+    }
+    api(group: 'com.ning', name: 'compress-lzf') {
+        transitive = false
+        version {
+            strictly '1.0.3'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'core') {
+        transitive = false
+        version {
+            strictly '1.1.2'
+        }
+    }
+    api(group: 'org.apache.curator', name: 'curator-client') {
+        transitive = false
+        version {
+            strictly '2.13.0'
+        }
+    }
+    api(group: 'org.apache.curator', name: 'curator-framework') {
+        transitive = false
+        version {
+            strictly '2.13.0'
+        }
+    }
+    api(group: 'org.apache.curator', name: 'curator-recipes') {
+        transitive = false
+        version {
+            strictly '2.13.0'
+        }
+    }
+    api(group: 'org.datanucleus', name: 'datanucleus-api-jdo') {
+        transitive = false
+        version {
+            strictly '4.2.4'
+        }
+    }
+    api(group: 'org.datanucleus', name: 'datanucleus-core') {
+        transitive = false
+        version {
+            strictly '4.1.17'
+        }
+    }
+    api(group: 'org.datanucleus', name: 'datanucleus-rdbms') {
+        transitive = false
+        version {
+            strictly '4.1.19'
+        }
+    }
+    api(group: 'org.apache.derby', name: 'derby') {
+        transitive = false
+        version {
+            strictly '10.12.1.1'
+        }
+    }
+    api(group: 'dnsjava', name: 'dnsjava') {
+        transitive = false
+        version {
+            strictly '2.1.7'
+        }
+    }
+    api(group: 'com.github.joshelser', name: 'dropwizard-metrics-hadoop-metrics2-reporter') {
+        transitive = false
+        version {
+            strictly '0.1.2'
+        }
+    }
+    api(group: 'org.ehcache', name: 'ehcache') {
+        transitive = false
+        version {
+            strictly '3.3.1'
+        }
+    }
+    api(group: 'com.google.flatbuffers', name: 'flatbuffers-java') {
+        transitive = false
+        version {
+            strictly '1.9.0'
+        }
+    }
+    api(group: 'com.github.mifmif', name: 'generex') {
+        transitive = false
+        version {
+            strictly '1.0.2'
+        }
+    }
+    api(group: 'org.apache.geronimo.specs', name: 'geronimo-jcache_1.0_spec') {
+        transitive = false
+        version {
+            strictly '1.0-alpha-1'
+        }
+    }
+    api(group: 'info.ganglia.gmetric4j', name: 'gmetric4j') {
+        transitive = false
+        version {
+            strictly '1.0.10'
+        }
+    }
+    api(group: 'com.google.code.gson', name: 'gson') {
+        transitive = false
+        version {
+            strictly '2.2.4'
+        }
+    }
+    api(group: 'com.google.guava', name: 'guava') {
+        transitive = false
+        version {
+            strictly '20.0'
+        }
+    }
+    api(group: 'com.google.inject', name: 'guice') {
+        transitive = false
+        version {
+            strictly '4.0'
+        }
+    }
+    api(group: 'com.google.inject.extensions', name: 'guice-servlet') {
+        transitive = false
+        version {
+            strictly '4.0'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-llap-common') {
+        transitive = false
+        version {
+            strictly '2.3.7'
+        }
+    }
+    api(group: 'org.apache.hive', name: 'hive-storage-api') {
+        transitive = false
+        version {
+            strictly '2.7.1'
+        }
+    }
+    api(group: 'org.glassfish.hk2', name: 'hk2-api') {
+        transitive = false
+        version {
+            strictly '2.6.1'
+        }
+    }
+    api(group: 'org.glassfish.hk2', name: 'hk2-locator') {
+        transitive = false
+        version {
+            strictly '2.6.1'
+        }
+    }
+    api(group: 'org.glassfish.hk2', name: 'hk2-utils') {
+        transitive = false
+        version {
+            strictly '2.6.1'
+        }
+    }
+    api(group: 'org.apache.htrace', name: 'htrace-core4') {
+        transitive = false
+        version {
+            strictly '4.1.0-incubating'
+        }
+    }
+    api(group: 'org.apache.httpcomponents', name: 'httpclient') {
+        transitive = false
+        version {
+            strictly '4.5.9'
+        }
+    }
+    api(group: 'org.apache.httpcomponents', name: 'httpcore') {
+        transitive = false
+        version {
+            strictly '4.4.11'
+        }
+    }
+    api(group: 'com.sun.istack', name: 'istack-commons-runtime') {
+        transitive = false
+        version {
+            strictly '3.0.8'
+        }
+    }
+    api(group: 'org.apache.ivy', name: 'ivy') {
+        transitive = false
+        version {
+            strictly '2.4.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.core', name: 'jackson-core') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'org.codehaus.jackson', name: 'jackson-core-asl') {
+        transitive = false
+        version {
+            strictly '1.9.13'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.core', name: 'jackson-databind') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-base') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'org.codehaus.jackson', name: 'jackson-mapper-asl') {
+        transitive = false
+        version {
+            strictly '1.9.13'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-paranamer') {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'com.fasterxml.jackson.module', name: "jackson-module-scala_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '2.10.0'
+        }
+    }
+    api(group: 'jakarta.activation', name: 'jakarta.activation-api') {
+        transitive = false
+        version {
+            strictly '1.2.1'
+        }
+    }
+    api(group: 'jakarta.annotation', name: 'jakarta.annotation-api') {
+        transitive = false
+        version {
+            strictly '1.3.5'
+        }
+    }
+    api(group: 'org.glassfish.hk2.external', name: 'jakarta.inject') {
+        transitive = false
+        version {
+            strictly '2.6.1'
+        }
+    }
+    api(group: 'jakarta.validation', name: 'jakarta.validation-api') {
+        transitive = false
+        version {
+            strictly '2.0.2'
+        }
+    }
+    api(group: 'jakarta.ws.rs', name: 'jakarta.ws.rs-api') {
+        transitive = false
+        version {
+            strictly '2.1.6'
+        }
+    }
+    api(group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api') {
+        transitive = false
+        version {
+            strictly '2.3.2'
+        }
+    }
+    api(group: 'org.codehaus.janino', name: 'janino') {
+        transitive = false
+        version {
+            strictly '3.0.16'
+        }
+    }
+    api(group: 'org.javassist', name: 'javassist') {
+        transitive = false
+        version {
+            strictly '3.25.0-GA'
+        }
+    }
+    api(group: 'javax.inject', name: 'javax.inject') {
+        transitive = false
+        version {
+            strictly '1'
+        }
+    }
+    api(group: 'org.datanucleus', name: 'javax.jdo') {
+        transitive = false
+        version {
+            strictly '3.2.0-m3'
+        }
+    }
+    api(group: 'javax.servlet', name: 'javax.servlet-api') {
+        transitive = false
+        version {
+            strictly '3.1.0'
+        }
+    }
+    api(group: 'javolution', name: 'javolution') {
+        transitive = false
+        version {
+            strictly '5.5.1'
+        }
+    }
+    api(group: 'javax.xml.bind', name: 'jaxb-api') {
+        transitive = false
+        version {
+            strictly '2.2.11'
+        }
+    }
+    api(group: 'org.glassfish.jaxb', name: 'jaxb-runtime') {
+        transitive = false
+        version {
+            strictly '2.3.2'
+        }
+    }
+    api(group: 'com.github.stephenc.jcip', name: 'jcip-annotations') {
+        transitive = false
+        version {
+            strictly '1.0-1'
+        }
+    }
+    api(group: 'javax.jdo', name: 'jdo-api') {
+        transitive = false
+        version {
+            strictly '3.0.1'
+        }
+    }
+    api(group: 'org.glassfish.jersey.core', name: 'jersey-client') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.core', name: 'jersey-common') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.inject', name: 'jersey-hk2') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.media', name: 'jersey-media-jaxb') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.glassfish.jersey.core', name: 'jersey-server') {
+        transitive = false
+        version {
+            strictly '2.30'
+        }
+    }
+    api(group: 'org.eclipse.jetty', name: 'jetty-rewrite') {
+        transitive = false
+        version {
+            strictly '9.3.27.v20190418'
+        }
+    }
+    api(group: 'jline', name: 'jline') {
+        transitive = false
+        version {
+            strictly '2.14.6'
+        }
+    }
+    api(group: 'com.github.fommil', name: 'jniloader') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'joda-time', name: 'joda-time') {
+        transitive = false
+        version {
+            strictly '2.10.5'
+        }
+    }
+    api(group: 'org.jodd', name: 'jodd-core') {
+        transitive = false
+        version {
+            strictly '3.5.2'
+        }
+    }
+    api(group: 'net.sf.jpam', name: 'jpam') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.tdunning', name: 'json') {
+        transitive = false
+        version {
+            strictly '1.8'
+        }
+    }
+    api(group: 'net.minidev', name: 'json-smart') {
+        transitive = false
+        version {
+            strictly '2.3'
+        }
+    }
+    api(group: 'org.json4s', name: "json4s-ast_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.6.6'
+        }
+    }
+    api(group: 'org.json4s', name: "json4s-core_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.6.6'
+        }
+    }
+    api(group: 'org.json4s', name: "json4s-jackson_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.6.6'
+        }
+    }
+    api(group: 'org.json4s', name: "json4s-scalap_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '3.6.6'
+        }
+    }
+    api(group: 'javax.servlet.jsp', name: 'jsp-api') {
+        transitive = false
+        version {
+            strictly '2.1'
+        }
+    }
+    api(group: 'com.google.code.findbugs', name: 'jsr305') {
+        transitive = false
+        version {
+            strictly '3.0.0'
+        }
+    }
+    api(group: 'javax.transaction', name: 'transaction-api') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'org.slf4j', name: 'jul-to-slf4j') {
+        transitive = false
+        version {
+            strictly '1.7.30'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-admin') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-client') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-common') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-core') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-crypto') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-identity') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-server') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-simplekdc') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerb-util') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerby-asn1') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerby-config') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerby-pkix') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerby-util') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'kerby-xdr') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'com.esotericsoftware', name: 'kryo-shaded') {
+        transitive = false
+        version {
+            strictly '4.0.2'
+        }
+    }
+    api(group: 'org.fusesource.leveldbjni', name: 'leveldbjni-all') {
+        transitive = false
+        version {
+            strictly '1.8'
+        }
+    }
+    api(group: 'org.apache.thrift', name: 'libfb303') {
+        transitive = false
+        version {
+            strictly '0.9.3'
+        }
+    }
+    api(group: 'org.apache.thrift', name: 'libthrift') {
+        transitive = false
+        version {
+            strictly '0.12.0'
+        }
+    }
+    api (group: 'log4j', name: 'log4j') {
+        transitive = false
+        version {
+            strictly '1.2.17'
+        }
+    }
+    api(group: 'com.squareup.okhttp3', name: 'logging-interceptor') {
+        transitive = false
+        version {
+            strictly '3.12.6'
+        }
+    }
+    api(group: 'org.lz4', name: 'lz4-java') {
+        transitive = false
+        version {
+            strictly '1.7.1'
+        }
+    }
+    api(group: 'org.typelevel', name: "machinist_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.6.8'
+        }
+    }
+    api(group: 'org.typelevel', name: "macro-compat_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '1.1.1'
+        }
+    }
+    api(group: 'io.dropwizard.metrics', name: 'metrics-core') {
+        transitive = false
+        version {
+            strictly '4.1.1'
+        }
+    }
+    api(group: 'io.dropwizard.metrics', name: 'metrics-graphite') {
+        transitive = false
+        version {
+            strictly '4.1.1'
+        }
+    }
+    api(group: 'io.dropwizard.metrics', name: 'metrics-jmx') {
+        transitive = false
+        version {
+            strictly '4.1.1'
+        }
+    }
+    api(group: 'io.dropwizard.metrics', name: 'metrics-json') {
+        transitive = false
+        version {
+            strictly '4.1.1'
+        }
+    }
+    api(group: 'io.dropwizard.metrics', name: 'metrics-jvm') {
+        transitive = false
+        version {
+            strictly '4.1.1'
+        }
+    }
+    api(group: 'com.esotericsoftware', name: 'minlog') {
+        transitive = false
+        version {
+            strictly '1.3.0'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'native_ref-java') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'native_system-java') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-linux-armhf') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-linux-i686') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-linux-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-osx-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-win-i686') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_ref-win-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-linux-armhf') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-linux-i686') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-linux-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-osx-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-win-i686') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.github.fommil.netlib', name: 'netlib-native_system-win-x86_64') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api (group: 'io.netty', name: 'netty-all') {
+        transitive = false
+        version {
+            strictly '4.1.47.Final'
+        }
+    }
+    api(group: 'com.nimbusds', name: 'nimbus-jose-jwt') {
+        transitive = false
+        version {
+            strictly '4.41.1'
+        }
+    }
+    api(group: 'org.objenesis', name: 'objenesis') {
+        transitive = false
+        version {
+            strictly '2.+'
+        }
+    }
+    api(group: 'com.squareup.okhttp', name: 'okhttp') {
+        transitive = false
+        version {
+            strictly '2.7.5'
+        }
+    }
+    api(group: 'com.squareup.okhttp3', name: 'okhttp') {
+        transitive = false
+        version {
+            strictly '3.12.6'
+        }
+    }
+    api(group: 'com.squareup.okio', name: 'okio') {
+        transitive = false
+        version {
+            strictly '1.15.0'
+        }
+    }
+    api(group: 'net.sf.opencsv', name: 'opencsv') {
+        transitive = false
+        version {
+            strictly '2.3'
+        }
+    }
+    api(group: 'org.apache.orc', name: 'orc-core') {
+        transitive = false
+        version {
+            strictly '1.5.10'
+        }
+    }
+    api(group: 'org.apache.orc', name: 'orc-mapreduce') {
+        transitive = false
+        version {
+            strictly '1.5.10'
+        }
+    }
+    api(group: 'org.apache.orc', name: 'orc-shims') {
+        transitive = false
+        version {
+            strictly '1.5.10'
+        }
+    }
+    api(group: 'oro', name: 'oro') {
+        transitive = false
+        version {
+            strictly '2.0.8'
+        }
+    }
+    api(group: 'org.glassfish.hk2', name: 'osgi-resource-locator') {
+        transitive = false
+        version {
+            strictly '1.0.3'
+        }
+    }
+    api(group: 'com.thoughtworks.paranamer', name: 'paranamer') {
+        transitive = false
+        version {
+            strictly '2.8'
+        }
+    }
+    api(group: 'org.apache.parquet', name: 'parquet-format') {
+        transitive = false
+        version {
+            strictly '2.4.0'
+        }
+    }
+    api(group: 'net.sf.py4j', name: 'py4j') {
+        transitive = false
+        version {
+            strictly '0.10.9'
+        }
+    }
+    api(group: 'net.razorvine', name: 'pyrolite') {
+        transitive = false
+        version {
+            strictly '4.30'
+        }
+    }
+    api(group: 'com.google.re2j', name: 're2j') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'org.acplt.remotetea', name: 'remotetea-oncrpc') {
+        transitive = false
+        version {
+            strictly '1.1.2'
+        }
+    }
+    api(group: 'org.scala-lang.modules', name: "scala-collection-compat_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '2.1.1'
+        }
+    }
+    api(group: 'org.scala-lang', name: 'scala-compiler') {
+        transitive = false
+        version {
+            strictly '2.12.10'
+        }
+    }
+    api(group: 'org.scala-lang', name: 'scala-library') {
+        transitive = false
+        version {
+            strictly '2.12.+' //TODO: Some require 2.12.10 and some 2.12.11
+        }
+    }
+    api(group: 'org.scala-lang.modules', name: "scala-parser-combinators_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '1.1.2'
+        }
+    }
+    api(group: 'org.scala-lang', name: 'scala-reflect') {
+        transitive = false
+        version {
+            strictly '2.12.10'
+        }
+    }
+    api(group: 'org.scala-lang.modules', name: "scala-xml_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '1.2.0'
+        }
+    }
+    api(group: 'com.chuusai', name: "shapeless_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '2.3.3'
+        }
+    }
+    api(group: 'org.roaringbitmap', name: 'shims') {
+        transitive = false
+        version {
+            strictly '0.7.45'
+        }
+    }
+    api(group: 'org.slf4j', name: 'slf4j-log4j12') {
+        transitive = false
+        version {
+            strictly '1.7.30'
+        }
+    }
+    api(group: 'org.yaml', name: 'snakeyaml') {
+        transitive = false
+        version {
+            strictly '1.24'
+        }
+    }
+    api(group: 'org.xerial.snappy', name: 'snappy-java') {
+        transitive = false
+        version {
+            strictly '1.1.7.5'
+        }
+    }
+    api(group: 'org.typelevel', name: "spire-macros_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.17.0-M1'
+        }
+    }
+    api(group: 'org.typelevel', name: "spire-platform_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.17.0-M1'
+        }
+    }
+    api(group: 'org.typelevel', name: "spire-util_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.17.0-M1'
+        }
+    }
+    api(group: 'org.typelevel', name: "spire_${scalaVersion}") {
+        transitive = false
+        version {
+            strictly '0.17.0-M1'
+        }
+    }
+    api(group: 'stax', name: 'stax-api') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'org.codehaus.woodstox', name: 'stax2-api') {
+        transitive = false
+        version {
+            strictly '3.1.4'
+        }
+    }
+    api(group: 'com.clearspring.analytics', name: 'stream') {
+        transitive = false
+        version {
+            strictly '2.9.6'
+        }
+    }
+    api(group: 'net.sf.supercsv', name: 'super-csv') {
+        transitive = false
+        version {
+            strictly '2.2.0'
+        }
+    }
+    api(group: 'org.threeten', name: 'threeten-extra') {
+        transitive = false
+        version {
+            strictly '1.5.0'
+        }
+    }
+    api(group: 'org.apache.kerby', name: 'token-provider') {
+        transitive = false
+        version {
+            strictly '1.0.1'
+        }
+    }
+    api(group: 'javax.transaction', name: 'transaction-api') {
+        transitive = false
+        version {
+            strictly '1.1'
+        }
+    }
+    api(group: 'com.univocity', name: 'univocity-parsers') {
+        transitive = false
+        version {
+            strictly '2.9.0'
+        }
+    }
+    api(group: 'velocity', name: 'velocity') {
+        transitive = false
+        version {
+            strictly "1.5"
+        }
+    }
+    api(group: 'com.fasterxml.woodstox', name: 'woodstox-core') {
+        transitive = false
+        version {
+            strictly '5.0.3'
+        }
+    }
+    api(group: 'org.apache.xbean', name: 'xbean-asm7-shaded') {
+        transitive = false
+        version {
+            strictly '4.15'
+        }
+    }
+    api(group: 'org.tukaani', name: 'xz') {
+        transitive = false
+        version {
+            strictly '1.5'
+        }
+    }
+    api(group: 'io.fabric8', name: 'zjsonpatch') {
+        transitive = false
+        version {
+            strictly '0.3.0'
+        }
+    }
+    api(group: 'com.github.luben', name: 'zstd-jni') {
+        transitive = false
+        version {
+            strictly '1.4.4-3'
+        }
+    }
+    api(group: 'org.jetbrains', name: 'annotations') {
+        transitive = false
+        version {
+            strictly '16.0.2'
+        }
+    }
+    api(group: 'aopalliance', name: 'aopalliance') {
+        transitive = false
+        version {
+            strictly '1.0'
+        }
+    }
+//No idea why AWS provides this. Apart from an NTRRU algorigthm, most deps are already
+//provided by the bcprov-jdk15on dependency
+//api (group: 'org.bouncycastle', name: 'bcprov-ext-jdk15on') {
+//    transitive = false
+    //version {
+//        strictly '1.66'
+//    }
+//}
+    api(group: 'org.apache.httpcomponents', name: 'fluent-hc') {
+        transitive = false
+        version {
+            strictly '4.5.6'
+        }
+    }
+    api(group: 'software.amazon.ion', name: 'ion-java') {
+        transitive = false
+        version {
+            strictly '1.0.2'
+        }
+    }
+    api(group: 'javax.inject', name: 'javax.inject') {
+        transitive = false
+        version {
+            strictly '1'
+        }
+    }
+    api(group: 'org.slf4j', name: 'jcl-over-slf4j') {
+        transitive = false
+        version {
+            strictly '1.7.+'
+        }
+    }
+    api(group: 'org.projectlombok', name: 'lombok') {
+        transitive = false
+        version {
+            strictly '1.18.4'
+        }
+    }
+    api(group: 'org.mockito', name: 'mockito-core') {
+        transitive = false
+        version {
+            strictly '1.10.19'
+        }
+    }
+    api(group: 'org.slf4j', name: 'slf4j-api') {
+        transitive = false
+        version {
+            strictly '1.7.+'
+        }
+    }
+    implementation(group: 'com.google.protobuf', name: 'protobuf-java') {
+        transitive = false
+        version {
+            strictly '3.+' //TODO: Tensorflow needs it '2.5.0'
+        }
+    }
+}
+
+application {
+    mainClass = 'org.gradle.sample.Main'
+}
+
+shadowJar.enabled = false
+buildZip.enabled = false

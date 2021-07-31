@@ -1,0 +1,80 @@
+plugins {
+    id 'myproject.java-conventions'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://s3.us-east-1.amazonaws.com/us-east-1-emr-artifacts/emr-6.1.0/repos/maven/"
+    }
+    maven {
+        url "https://maven.twttr.com/"
+    }
+    maven {
+        name = "mridang"
+        url = uri("https://maven.pkg.github.com/mridang/hudi")
+        credentials {
+            username = "mridang"
+            password = "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"
+        }
+    }
+}
+
+dependencies {
+    modules {
+        module('com.sun.jersey:jersey-server') {
+            //noinspection GradlePackageUpdate
+            replacedBy('org.glassfish.jersey.core:jersey-server')
+        }
+    }
+
+    components.all(JacksonAlignmentRule)
+    components.all(SparkAlignmentRule)
+    components.all(HadoopAlignmentRule)
+    components.all(HiveAlignmentRule)
+    components.all(AWSAlignmentRule)
+
+    implementation (project(':emr')) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+    testImplementation project(':emr').sourceSets.test.output
+
+
+    implementation (group: 'org.apache.spark', name: "spark-avro_${scalaVersion}", version: sparkVersion) {
+        because 'since it is not included by default on EMR'
+    }
+    implementation group: 'org.apache.logging.log4j', name: "log4j-api-scala_${scalaVersion}", version: '12.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.2'
+    implementation group: 'com.typesafe', name: 'config', version: '1.4.1'
+    implementation (group: 'org.apache.hudi', name: "hudi-spark3-bundle_${scalaVersion}", version: '0.8.0-916-emr-6.1.0') {
+        // We use the BloomFilter based index and and not HBase
+        // https://hudi.apache.org/docs/0.8.0-configurations.html#index-configs
+        exclude group: 'org.apache.hbase'
+    }
+    implementation group: 'org.elasticsearch', name: "elasticsearch-spark-30_${scalaVersion}", version: '7.13.4'
+    implementation group: 'org.mongodb.spark', name: "mongo-spark-connector_${scalaVersion}", version: '3.0.1'
+    testImplementation group: 'com.dimafeng', name: "testcontainers-scala-mongodb_${scalaVersion}", version: '0.39.5'
+    testImplementation group: 'com.holdenkarau', name: "spark-testing-base_${scalaVersion}", version: "${sparkVersion}_1.1.0"
+    implementation group: 'org.tensorflow', name: 'tensorflow-core-platform', version: '0.3.1'
+    implementation group: 'org.tensorflow', name: 'tensorflow-framework', version: '0.3.1'
+    implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'macosx-x86_64'
+    implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'linux-x86_64'
+}
+
+application {
+    mainClass = 'org.gradle.sample.Main'
+}
+
+task copyDeps(type: Copy) {
+    into "runtime"
+    from subprojects.collect {
+        it.configurations.runtime
+    }
+}
+
+task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
+    dependsOn copyDeps
+    excludes(['LICENSE', 'NOTICE', '.gitkeep', 'git.properties', 'plugin.xml', '\\.options', '.api_description', 'jetty-dir.css', 'yarn-default.xml', 'plugin.properties', 'log4j-surefire-quiet.properties', 'log4j-surefire.properties', 'encoding.properties', 'log4j.properties', '^com/sun/.*', '^javax/.*', '^org/slf4j/*', '^org/apache/commons/*', 'spire/scalacompat/*', 'org/aopalliance/*', 'codegen/config.fmpp', '.proto$', 'webapps/static/.*', 'org/apache/spark/unused/UnusedStubClass.class', 'org/apache/jasper/compiler/Localizer.class', 'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class', 'org/apache/hadoop/hive/common/ValidReadTxnList.class', 'org/apache/hadoop/hive/common/ValidTxnList.class', 'org/fusesource/hawtjni/runtime/*'])
+    configurationsToCheck(configurations.runtimeClasspath)
+}

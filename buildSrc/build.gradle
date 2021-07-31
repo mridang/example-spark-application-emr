@@ -1,0 +1,18 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+    
+dependencies {
+    implementation 'gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.6.2'
+    implementation "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
+    implementation "net.ltgt.gradle:gradle-errorprone-plugin:2.0.2"
+    implementation "net.ltgt.gradle:gradle-nullaway-plugin:1.1.0"
+    implementation "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
+    implementation "gradle.plugin.com.github.maiflai:gradle-scalatest:0.31"
+    implementation "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
+}
