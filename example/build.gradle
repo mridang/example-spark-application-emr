@@ -50,7 +50,8 @@ dependencies {
     implementation (group: 'org.apache.hudi', name: "hudi-spark3-bundle_${scalaVersion}", version: '0.8.0-916-emr-6.1.0') {
         // We use the BloomFilter based index and and not HBase
         // https://hudi.apache.org/docs/0.8.0-configurations.html#index-configs
-        exclude group: 'org.apache.hbase'
+        exclude group: 'org.apache.hbase', module: 'hbase-server'
+        exclude group: 'com.github.stephenc.findbugs', module: 'findbugs-annotations'
     }
     implementation group: 'org.elasticsearch', name: "elasticsearch-spark-30_${scalaVersion}", version: '7.13.4'
     implementation group: 'org.mongodb.spark', name: "mongo-spark-connector_${scalaVersion}", version: '3.0.1'
