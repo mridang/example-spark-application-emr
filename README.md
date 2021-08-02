@@ -1,4 +1,4 @@
-# example-spark
+# Glowplug
 
 ```
 ./gradlew emr:dependencies

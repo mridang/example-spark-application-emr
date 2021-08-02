@@ -105,13 +105,13 @@ task buildZip(type: Zip) {
     }
 }
 
-shadowJar {
-    zip64 true
-}
+//shadowJar {
+//    zip64 true
+//}
 
 //noinspection GroovyAssignabilityCheck
 build.dependsOn buildZip
-build.dependsOn shadowJar
+//build.dependsOn shadowJar
 
 afterEvaluate {
     configurations.all {

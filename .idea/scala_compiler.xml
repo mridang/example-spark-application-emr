@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Gradle 1" modules="example-spark.example.main,example-spark.example.test,example-spark.emr.main,example-spark.emr.test">
+    <profile name="Gradle 1" modules="example-spark.emr.main,example-spark.emr.test,example-spark.example.main,example-spark.example.test,glowplug.emr.main,glowplug.emr.test,glowplug.example.main,glowplug.example.test">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <parameters>

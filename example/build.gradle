@@ -34,20 +34,20 @@ dependencies {
     components.all(HiveAlignmentRule)
     components.all(AWSAlignmentRule)
 
-    implementation (project(':emr')) {
+    implementation(project(':emr')) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
     testImplementation project(':emr').sourceSets.test.output
 
 
-    implementation (group: 'org.apache.spark', name: "spark-avro_${scalaVersion}", version: sparkVersion) {
+    implementation(group: 'org.apache.spark', name: "spark-avro_${scalaVersion}", version: sparkVersion) {
         because 'since it is not included by default on EMR'
     }
     implementation group: 'org.apache.logging.log4j', name: "log4j-api-scala_${scalaVersion}", version: '12.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.2'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.2'
     implementation group: 'com.typesafe', name: 'config', version: '1.4.1'
-    implementation (group: 'org.apache.hudi', name: "hudi-spark3-bundle_${scalaVersion}", version: '0.8.0-916-emr-6.1.0') {
+    implementation(group: 'org.apache.hudi', name: "hudi-spark3-bundle_${scalaVersion}", version: '0.8.0-916-emr-6.1.0') {
         // We use the BloomFilter based index and and not HBase
         // https://hudi.apache.org/docs/0.8.0-configurations.html#index-configs
         exclude group: 'org.apache.hbase', module: 'hbase-server'
@@ -67,15 +67,62 @@ application {
     mainClass = 'org.gradle.sample.Main'
 }
 
-task copyDeps(type: Copy) {
-    into "runtime"
-    from subprojects.collect {
-        it.configurations.runtime
+shadowJar {
+    zip64 true
+    dependencies {
+        exclude({
+            var boolean skip = project.project(":emr").configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
+                    .findAll { 
+                        artifact -> artifact.owner.id.group == it.moduleGroup 
+                    }.findAll {
+                artifact -> artifact.owner.id.name == it.moduleName
+                    }
+                    .findAll {
+                        artifact -> artifact.owner.version == it.moduleVersion 
+                    }
+                    .any()
+            if (!skip) {
+                println(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
+            }
+            skip
+        })
     }
 }
 
 task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
-    dependsOn copyDeps
-    excludes(['LICENSE', 'NOTICE', '.gitkeep', 'git.properties', 'plugin.xml', '\\.options', '.api_description', 'jetty-dir.css', 'yarn-default.xml', 'plugin.properties', 'log4j-surefire-quiet.properties', 'log4j-surefire.properties', 'encoding.properties', 'log4j.properties', '^com/sun/.*', '^javax/.*', '^org/slf4j/*', '^org/apache/commons/*', 'spire/scalacompat/*', 'org/aopalliance/*', 'codegen/config.fmpp', '.proto$', 'webapps/static/.*', 'org/apache/spark/unused/UnusedStubClass.class', 'org/apache/jasper/compiler/Localizer.class', 'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class', 'org/apache/hadoop/hive/common/ValidReadTxnList.class', 'org/apache/hadoop/hive/common/ValidTxnList.class', 'org/fusesource/hawtjni/runtime/*'])
+    excludes(['LICENSE', 
+              'NOTICE', 
+              '.gitkeep', 
+              'git.properties', 
+              'plugin.xml', 
+              '\\.options', 
+              '.api_description', 
+              'jetty-dir.css',
+              'yarn-default.xml',
+              'plugin.properties', 
+              'log4j-surefire-quiet.properties', 
+              'log4j-surefire.properties', 
+              'encoding.properties', 
+              'log4j.properties', 
+              '^com/sun/.*', 
+              '^javax/.*', 
+              '^org/slf4j/*', 
+              '^org/apache/commons/*', 
+              'org/aopalliance/*', 
+              'codegen/config.fmpp', 
+              '.proto$', 
+              'webapps/static/.*', 
+              'spire/scalacompat/BuilderCompat.class', 
+              'spire/scalacompat/package\\$.class', 
+              'spire/scalacompat/package\\$FactoryCompatOps.class', 
+              'spire/scalacompat/IterableLikeCompat.class', 
+              'spire/scalacompat/ScalaOrderingWrapperCompat.class', 
+              'spire/scalacompat/package.class', 
+              'org/apache/spark/unused/UnusedStubClass.class', 
+              'org/apache/jasper/compiler/Localizer.class', 
+              'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class', 
+              'org/apache/hadoop/hive/common/ValidReadTxnList.class', 
+              'org/apache/hadoop/hive/common/ValidTxnList.class', 
+              'org/fusesource/hawtjni/runtime/.*.class'])
     configurationsToCheck(configurations.runtimeClasspath)
 }

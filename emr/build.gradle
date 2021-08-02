@@ -3180,3 +3180,17 @@ application {
 
 shadowJar.enabled = false
 buildZip.enabled = false
+
+task copyFiles {
+    dependsOn 'build'
+    doLast {
+        copy {
+            into "$projectDir/docker/spark/master/jars"
+            from configurations.default
+        }
+        copy {
+            into "$projectDir/docker/spark/slave/jars"
+            from configurations.default
+        }
+    }
+}
