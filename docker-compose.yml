@@ -5,11 +5,23 @@ services:
     container_name: mongodb
     ports:
       - "37017:27017"
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9991:9999"
+    volumes:
+      - ./storage/minio:/data
+    environment:
+      MINIO_ACCESS_KEY: minio_username
+      MINIO_SECRET_KEY: minio_password
+    command: server --address :9999 /data
   spark-master:
     build: emr/docker/spark/master
     container_name: spark-master
     depends_on:
       - mongo
+      - minio
     ports:
       - "8080:8080"
       - "7077:7077"
@@ -35,14 +47,3 @@ services:
       - "MASTER=spark://spark-master:7077"
       - "SPARK_MASTER=spark://spark-master:7077"
       - "SPARK_HOME=/zeppelin/spark"
-  minio:
-    image: minio/minio
-    container_name: minio
-    ports:
-      - "9999:9999"
-    volumes:
-      - ./storage/minio:/data
-    environment:
-      MINIO_ACCESS_KEY: minio_username
-      MINIO_SECRET_KEY: minio_password
-    command: server --address :9999 /data
