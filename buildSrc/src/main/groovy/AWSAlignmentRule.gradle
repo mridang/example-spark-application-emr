@@ -2,6 +2,7 @@ import org.gradle.api.artifacts.ComponentMetadataContext
 import org.gradle.api.artifacts.ComponentMetadataRule
 
 abstract class AWSAlignmentRule implements ComponentMetadataRule {
+    @SuppressWarnings('GroovyMissingReturnStatement')
     void execute(ComponentMetadataContext ctx) {
         ctx.details.with {
             if (id.group.startsWith("com.amazonaws")) {
