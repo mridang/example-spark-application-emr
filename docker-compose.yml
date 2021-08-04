@@ -11,7 +11,7 @@ services:
     ports:
       - "9991:9999"
     volumes:
-      - ./storage/minio:/data
+      - ./.docker/storage/minio:/data
     environment:
       MINIO_ACCESS_KEY: minio_username
       MINIO_SECRET_KEY: minio_password
@@ -25,6 +25,8 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
+      - "4041:4040"
+      - "18081:18080"
     environment:
       - INIT_DAEMON_STEP=setup_spark
   spark-worker-1:
