@@ -104,7 +104,6 @@ class CheckDuplicateClassesEngine {
                     collect { it.name }
         } catch (ZipException e) {
             println artifactFile.toPath().toAbsolutePath().toString()
-            println("mooo")
             Collections.emptyList()
         }
     }
