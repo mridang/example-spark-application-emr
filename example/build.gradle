@@ -14,8 +14,8 @@ repositories {
         name = "mridang"
         url = uri("https://maven.pkg.github.com/mridang/hudi")
         credentials {
-            username = "mridang"
-            password = "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"
+            username = project.findProperty("githubUsername") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("githubPassword") ?: System.getenv("GITHUB_TOKEN")
         }
     }
 }
