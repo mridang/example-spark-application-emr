@@ -13,13 +13,17 @@ repositories {
 }
 
 configurations {
-    spark.extendsFrom api
-    emr.extendsFrom spark
-
-    compileClasspath.extendsFrom(emr)
-    testCompileClasspath.extendsFrom(emr)
-    runtimeClasspath.extendsFrom(emr)
-    testRuntimeClasspath.extendsFrom(emr)
+    spark {
+        transitive = false
+    }
+    emr {
+        transitive = false
+        extendsFrom(spark)
+    }
+    api {
+        transitive = false
+        extendsFrom(emr)
+    }
 }
 
 dependencies {

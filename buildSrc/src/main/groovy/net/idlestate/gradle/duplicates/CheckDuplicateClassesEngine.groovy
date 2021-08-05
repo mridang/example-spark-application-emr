@@ -16,6 +16,10 @@
  */
 package net.idlestate.gradle.duplicates
 
+import org.gradle.api.logging.LogLevel
+import org.gradle.api.logging.Logger
+import org.slf4j.LoggerFactory
+
 import java.nio.file.Path
 import java.util.function.Consumer
 import java.util.regex.Pattern
@@ -25,6 +29,8 @@ import java.util.zip.ZipException
 import java.util.zip.ZipFile
 
 class CheckDuplicateClassesEngine {
+
+    private final Logger logger = LoggerFactory.getLogger(CheckDuplicateClassesEngine.class)
     private static final List<String> defaultExclude =
             Arrays.asList('^(META-INF/).*',
                     '^(OSGI-INF/).*',
@@ -103,7 +109,7 @@ class CheckDuplicateClassesEngine {
             new ZipFile(artifactFile).entries().findAll { isValidEntry(it, excludePattern, includePattern) }.
                     collect { it.name }
         } catch (ZipException e) {
-            println artifactFile.toPath().toAbsolutePath().toString()
+            logger.log(LogLevel.WARN, "File {} is not a valid unzippable artifact.", artifactFile.name)
             Collections.emptyList()
         }
     }

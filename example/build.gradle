@@ -82,7 +82,7 @@ shadowJar {
                     }
                     .any()
             if (!skip) {
-                println(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
+                logger.debug(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
             }
             skip
         })
