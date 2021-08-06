@@ -12,6 +12,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+          
+      - name: Start containers
+        run: docker-compose up --detach minio mongo
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -21,6 +24,10 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose down
 
       - name: Test Report
         uses: scacap/action-surefire-report@v1.0.9
