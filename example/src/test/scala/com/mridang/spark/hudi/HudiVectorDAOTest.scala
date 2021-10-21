@@ -1,7 +1,9 @@
 package com.mridang.spark.hudi
 
-import com.mridang.spark.Amazon.BetterS3
-import com.mridang.spark.{Amazon, BetterRDDComparisons, SparkSuiteLike, SqlSuiteLike}
+import com.dimafeng.testcontainers.{ForAllTestContainer, MinioContainer}
+import com.mridang.spark.{BetterRDDComparisons, SparkSuiteLike, SqlSuiteLike}
+import org.apache.hadoop.fs.Path
+import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
@@ -15,10 +17,27 @@ class HudiVectorDAOTest
     with SparkSuiteLike
     with SqlSuiteLike
     with BetterRDDComparisons
-    with BeforeAndAfterEach {
+    with BeforeAndAfterEach
+    with ForAllTestContainer {
+
+  override val container: MinioContainer = MinioContainer()
 
   override def extraConf: Map[String, String] =
-    Map("spark.serializer" -> "org.apache.spark.serializer.KryoSerializer")
+    Map(
+      "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer",
+      "spark.hadoop.fs.s3.endpoint" -> s"http://s3.dev.nos.to:${container.mappedPort(9000)}",
+      "spark.hadoop.fs.s3.impl" -> "org.apache.hadoop.fs.s3a.MinioFileSystem",
+      "spark.hadoop.fs.s3a.endpoint" -> s"http://s3.dev.nos.to:${container.mappedPort(9000)}",
+      "spark.hadoop.fs.s3a.impl" -> "org.apache.hadoop.fs.s3a.MinioFileSystem",
+      "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer"
+    )
+
+  override def conf: SparkConf = new SparkConf().setAll(super.conf.getAll)
+    .set("spark.hadoop.fs.s3.endpoint", "http://s3.dev.nos.to:" + container.mappedPort(9000))
+    .set("spark.hadoop.fs.s3.impl", "org.apache.hadoop.fs.s3a.MinioFileSystem")
+    .set("spark.hadoop.fs.s3a.endpoint", "http://s3.dev.nos.to:" + container.mappedPort(9000))
+    .set("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.MinioFileSystem")
+    .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
 
   /**
     * Generates a random vector record with 1024 embeddings for Cassandra
@@ -44,11 +63,9 @@ class HudiVectorDAOTest
   }
 
   private def resetBucket(bucketName: String): Unit = {
-    if (Amazon.s3.doesBucketExist(bucketName)) {
-      Amazon.s3.truncateBucket(bucketName)
-    } else {
-      Amazon.s3.createBucket(bucketName)
-    }
+    new Path(s"s3://$bucketName/")
+      .getFileSystem(spark.sparkContext.hadoopConfiguration)
+      .delete(new Path(s"s3://$bucketName/"), true)
   }
 
   test("that saving and querying a single merchant works as expected") {
