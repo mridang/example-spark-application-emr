@@ -1,7 +1,7 @@
 package com.dimafeng.testcontainers
 
-import org.testcontainers.minio.{MinioContainer => JavaMinioContainer}
 import org.testcontainers.utility.DockerImageName
+import org.testcontainers.minio.{MinioContainer => JavaMinioContainer}
 
 import java.net.InetSocketAddress
 
@@ -21,6 +21,7 @@ case class MinioContainer
 
 object MinioContainer {
 
+  
   val defaultImage = "minio/minio"
   val defaultTag = "latest"
   val defaultDockerImageName = s"$defaultImage:$defaultTag"

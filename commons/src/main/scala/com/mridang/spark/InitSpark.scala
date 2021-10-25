@@ -3,7 +3,7 @@ package com.mridang.spark
 import org.apache.hadoop.fs.s3a.S3AFileSystem
 import org.apache.logging.log4j.scala.Logging
 import org.apache.spark.SparkContext
-import org.apache.spark.sql.{DataFrameReader, SQLContext, SparkSession}
+import org.apache.spark.sql.{SQLContext, SparkSession}
 
 object InitSpark {
 
@@ -51,16 +51,6 @@ trait InitSpark extends Logging {
   def initSession(): Void => SparkSession = {
     _ => spark
   }
-
-  def reader: DataFrameReader = spark.read
-    .option("header", true)
-    .option("inferSchema", true)
-    .option("mode", "DROPMALFORMED")
-
-  def readerWithoutHeader: DataFrameReader = spark.read
-    .option("header", true)
-    .option("inferSchema", true)
-    .option("mode", "DROPMALFORMED")
 
   private def init: Unit = {
     sparkContext.setLogLevel("ERROR")

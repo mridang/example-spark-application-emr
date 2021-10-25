@@ -1,0 +1,81 @@
+plugins {
+    id 'myproject.java-conventions'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://s3.us-east-1.amazonaws.com/us-east-1-emr-artifacts/emr-6.1.0/repos/maven/"
+    }
+    maven {
+        url "https://maven.twttr.com/"
+    }
+    maven {
+        name = "mridang"
+        url = uri("https://maven.pkg.github.com/mridang/hudi")
+        credentials {
+            username = project.findProperty("githubUsername") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("githubPassword") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
+}
+
+dependencies {
+    modules {
+        module('com.sun.jersey:jersey-server') {
+            //noinspection GradlePackageUpdate
+            replacedBy('org.glassfish.jersey.core:jersey-server')
+        }
+    }
+
+    components.all(JacksonAlignmentRule)
+    components.all(SparkAlignmentRule)
+    components.all(HadoopAlignmentRule)
+    components.all(HiveAlignmentRule)
+    components.all(AWSAlignmentRule)
+
+    implementation(project(':emr')) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+    implementation(project(':commons')) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+    testImplementation project(':commons').sourceSets.test.output
+
+    implementation group: 'org.apache.logging.log4j', name: "log4j-api-scala_${scalaVersion}", version: '12.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.2'
+    implementation group: 'com.typesafe', name: 'config', version: '1.4.1'
+    testImplementation group: 'com.dimafeng', name: 'testcontainers-scala-scalatest_2.12', version: '0.39.5'
+    testImplementation group: 'com.holdenkarau', name: "spark-testing-base_${scalaVersion}", version: "${sparkVersion}_1.1.0"
+    implementation group: 'org.tensorflow', name: 'tensorflow-core-platform', version: '0.3.1'
+    implementation group: 'org.tensorflow', name: 'tensorflow-framework', version: '0.3.1'
+    implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'macosx-x86_64'
+    implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'linux-x86_64'
+}
+
+application {
+    mainClass = 'org.gradle.sample.Main'
+}
+
+shadowJar {
+    zip64 true
+    dependencies {
+        exclude({
+            var boolean skip = project.project(":emr").configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
+                    .findAll {
+                        artifact -> artifact.owner.id.group == it.moduleGroup
+                    }.findAll {
+                artifact -> artifact.owner.id.name == it.moduleName
+            }
+                    .findAll {
+                        artifact -> artifact.owner.version == it.moduleVersion
+                    }
+                    .any()
+            if (!skip) {
+                logger.debug(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
+            }
+            skip
+        })
+    }
+}

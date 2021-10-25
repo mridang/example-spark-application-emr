@@ -1,3 +1,8 @@
 rootProject.name = 'glowplug'
 include 'emr'
+include 'commons'
 include 'example'
+include 'hudi'
+include 'tensorflow'
+include 'tensorflow'
+

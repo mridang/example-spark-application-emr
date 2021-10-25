@@ -37,10 +37,6 @@ public class MinioContainer extends GenericContainer<MinioContainer> {
      */
     private static final DockerImageName DEFAULT_IMAGE_NAME = DockerImageName.parse("minio/minio");
 
-    /**
-     * @deprecated use {@link MinioContainer(DockerImageName)} instead
-     */
-    @Deprecated
     public MinioContainer() {
         this(DEFAULT_IMAGE_NAME.withTag(DEFAULT_TAG));
     }

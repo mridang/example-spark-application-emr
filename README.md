@@ -1,5 +1,15 @@
 # Glowplug
 
+Starting the docker containers will make the following endpoints accessible:
+
+| URL                                  | Service                    |
+|--------------------------------------|----------------------------|
+| http://minio.docker.localhost/       | MinIO Administration UI    |
+| http://zeppelin.docker.localhost/    | Zeppelin Notebook UI       |
+| http://spark.docker.localhost/       | Spark Master UI            |
+| http://webui.spark.docker.localhost/ | Spark Job Server UI        |
+| http://webui.spark.docker.localhost/ | Spark History Server UI    |
+
 ```
 ./gradlew emr:dependencies
 ```

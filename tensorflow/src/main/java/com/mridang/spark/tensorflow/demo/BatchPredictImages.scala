@@ -16,8 +16,6 @@ object BatchPredictImages extends InitSpark {
 class BatchPredictImages(@transient val sparkContext: SparkContext, @transient sparkSession: SparkSession)
     extends TensorflowSparkListener with Serializable {
 
-  import sqlContext.implicits._
-
   lazy val tensorflowModel: TensorflowModel[Array[Byte], Array[Float]] = ExampleModel
 
   override def tensorflowSession: Session = {

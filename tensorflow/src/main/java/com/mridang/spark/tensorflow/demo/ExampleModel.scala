@@ -2,9 +2,9 @@ package com.mridang.spark.tensorflow.demo
 
 import com.mridang.spark.tensorflow.TensorflowModel
 import org.tensorflow.Session
-import org.tensorflow.ndarray.{NdArrays, Shape}
 import org.tensorflow.ndarray.impl.buffer.raw.RawDataBufferFactory
 import org.tensorflow.ndarray.impl.dense.FloatDenseNdArray
+import org.tensorflow.ndarray.{NdArrays, Shape}
 import org.tensorflow.types.{TFloat32, TString}
 
 import java.nio.file.Paths

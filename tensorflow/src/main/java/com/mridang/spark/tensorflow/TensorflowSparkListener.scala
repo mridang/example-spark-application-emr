@@ -1,8 +1,8 @@
 package com.mridang.spark.tensorflow
 
+import org.apache.spark.{SparkContext, SparkFiles}
 import org.apache.spark.scheduler.{SparkListener, SparkListenerApplicationEnd, SparkListenerApplicationStart}
 import org.apache.spark.sql.SQLContext
-import org.apache.spark.{SparkContext, SparkFiles}
 import org.tensorflow.Session
 
 trait TensorflowSparkListener extends SparkListener {
