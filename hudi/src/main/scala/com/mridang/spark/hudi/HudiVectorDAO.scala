@@ -11,7 +11,7 @@ import org.apache.spark.sql.{DataFrame, SQLContext}
 object HudiVectorDAO {
 
   final val HUDI: String = "hudi"
-  final val s3Path: String = "s3://nosto-image-vectors/data/"
+  final val s3Path: String = "s3://image-vectors/data/"
 
   def readHudi()(implicit sql: SQLContext): DataFrame = {
     sql.read

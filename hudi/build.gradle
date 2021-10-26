@@ -62,25 +62,3 @@ dependencies {
 application {
     mainClass = 'org.gradle.sample.Main'
 }
-
-shadowJar {
-    zip64 true
-    dependencies {
-        exclude({
-            var boolean skip = project.project(":emr").configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
-                    .findAll {
-                        artifact -> artifact.owner.id.group == it.moduleGroup
-                    }.findAll {
-                artifact -> artifact.owner.id.name == it.moduleName
-            }
-                    .findAll {
-                        artifact -> artifact.owner.version == it.moduleVersion
-                    }
-                    .any()
-            if (!skip) {
-                logger.debug(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
-            }
-            skip
-        })
-    }
-}

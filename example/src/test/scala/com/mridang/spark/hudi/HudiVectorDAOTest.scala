@@ -69,7 +69,7 @@ class HudiVectorDAOTest
   }
 
   test("that saving and querying a single merchant works as expected") {
-    resetBucket("nosto-image-vectors")
+    resetBucket("image-vectors")
 
     val rdd: RDD[ImageVectors] = {
       sc.parallelize(
@@ -97,7 +97,7 @@ class HudiVectorDAOTest
   }
 
   ignore("that saving and querying multiple merchants works as expected") {
-    resetBucket("nosto-image-vectors")
+    resetBucket("image-vectors")
 
     val rdd: RDD[ImageVectors] = {
       sc.parallelize(

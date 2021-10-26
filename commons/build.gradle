@@ -24,10 +24,6 @@ application {
     mainClass = 'org.gradle.sample.Main'
 }
 
-shadowJar {
-    zip64 true
-}
-
 dependencies {
     modules {
         module('com.sun.jersey:jersey-server') {
