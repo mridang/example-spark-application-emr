@@ -38,7 +38,9 @@ dependencies {
     components.all(HiveAlignmentRule)
     components.all(AWSAlignmentRule)
 
-    implementation(project(':emr'))
+    implementation(project(':emr')) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
     //testImplementation project(':emr').sourceSets.test.output
 
     implementation group: 'org.apache.logging.log4j', name: "log4j-api-scala_${scalaVersion}", version: '12.0'

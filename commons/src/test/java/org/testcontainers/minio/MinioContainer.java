@@ -31,7 +31,6 @@ public class MinioContainer extends GenericContainer<MinioContainer> {
     /**
      * MinIO storage directory
      */
-    private static final String MINIO_DEFAULT_STORAGE_DIRECTORY = "/data";
     /**
      * MinIO Docker base image
      */
