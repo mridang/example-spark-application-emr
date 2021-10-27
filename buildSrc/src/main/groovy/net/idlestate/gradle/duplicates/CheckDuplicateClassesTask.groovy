@@ -35,7 +35,7 @@ class CheckDuplicateClassesTask extends DefaultTask implements VerificationTask 
 
     private boolean _ignoreFailures = false
 
-    private boolean _generateReport = false;
+    private boolean _generateReport = false
 
     private File reportDirectory
 
@@ -144,7 +144,7 @@ class CheckDuplicateClassesTask extends DefaultTask implements VerificationTask 
     }
 
 
-    Collection<String> processArtifact(ResolvedArtifact artifact, CheckDuplicateClassesEngine engine) {
+    static Collection<String> processArtifact(ResolvedArtifact artifact, CheckDuplicateClassesEngine engine) {
         if (artifact.moduleVersion != null) {
             //logger.info("    '${artifact.file.path}' of '${artifact.moduleVersion}'")
         } else {

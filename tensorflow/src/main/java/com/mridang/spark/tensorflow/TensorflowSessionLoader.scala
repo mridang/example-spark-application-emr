@@ -6,6 +6,6 @@ import org.tensorflow.{SavedModelBundle, Session}
 object TensorflowSessionLoader {
 
   lazy final val tfSession: Session = SavedModelBundle.load(SparkFiles.get("model"), "serve")
-    .session();
+    .session()
 
 }

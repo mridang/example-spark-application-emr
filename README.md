@@ -72,7 +72,9 @@ aws s3 cp --endpoint-url http://localhost:9991 file.json s3://glowplug
 ##### Sanity check all classpath JARs
 
 ```scala
-ClassLoader.getSystemClassLoader().asInstanceOf[java.net.URLClassLoader].getURLs().foreach { println }
+ClassLoader.getSystemClassLoader.asInstanceOf[java.net.URLClassLoader].getURLs.foreach {
+  println
+}
 ```
 
 

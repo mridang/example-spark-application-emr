@@ -38,6 +38,6 @@ class BatchPredictImages(@transient val sparkContext: SparkContext, @transient s
       })
 
     println(vectorDF.rdd.toDebugString)
-    println(vectorDF.show())
+    vectorDF.show()
   }
 }

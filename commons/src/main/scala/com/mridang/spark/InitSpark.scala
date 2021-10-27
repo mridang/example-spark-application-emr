@@ -8,28 +8,10 @@ import org.apache.spark.sql.{SQLContext, SparkSession}
 object InitSpark {
 
   def setupContext(sc: SparkContext): SparkContext = {
-    sc.hadoopConfiguration.set("mapreduce.input.fileinputformat.split.minsize", Int.MaxValue.toString)
 
-    sc.hadoopConfiguration.setInt("fs.s3a.multipart.size", 104857600)
-    sc.hadoopConfiguration.setInt("fs.s3a.threads.max", 256)
-    sc.hadoopConfiguration.setInt("fs.s3a.block.size", 32 * 1024 * 1024)
     sc.hadoopConfiguration.set("fs.s3a.impl", classOf[S3AFileSystem].getName)
-    sc.hadoopConfiguration.set("fs.s3a.endpoint", Conf.conf.getString("aws.s3.endpoint-url"))
-    sc.hadoopConfiguration.set("fs.s3a.access.key", Conf.conf.getString("aws.s3.access-key"))
-    sc.hadoopConfiguration.set("fs.s3a.secret.key", Conf.conf.getString("aws.s3.secret-key"))
-    sc.hadoopConfiguration.set("fs.s3a.path.style.access", "true")
-
     sc.hadoopConfiguration.set("fs.s3.impl", classOf[S3AFileSystem].getName)
-    sc.hadoopConfiguration.set("fs.s3.endpoint", Conf.conf.getString("aws.s3.endpoint-url"))
-    sc.hadoopConfiguration.set("fs.s3.access.key", Conf.conf.getString("aws.s3.access-key"))
-    sc.hadoopConfiguration.set("fs.s3.secret.key", Conf.conf.getString("aws.s3.secret-key"))
-    sc.hadoopConfiguration.set("fs.s3.path.style.access", "true")
-
     sc.hadoopConfiguration.set("fs.s3n.impl", classOf[S3AFileSystem].getName)
-    sc.hadoopConfiguration.set("fs.s3n.endpoint", Conf.conf.getString("aws.s3.endpoint-url"))
-    sc.hadoopConfiguration.set("fs.s3n.access.key", Conf.conf.getString("aws.s3.access-key"))
-    sc.hadoopConfiguration.set("fs.s3n.secret.key", Conf.conf.getString("aws.s3.secret-key"))
-    sc.hadoopConfiguration.set("fs.s3n.path.style.access", "true")
     sc
   }
 }
@@ -52,13 +34,13 @@ trait InitSpark extends Logging {
     _ => spark
   }
 
-  private def init: Unit = {
+  private def init(): Unit = {
     sparkContext.setLogLevel("ERROR")
   }
 
-  init
+  init()
 
-  def close: Unit = {
+  def close(): Unit = {
     spark.close()
   }
 }

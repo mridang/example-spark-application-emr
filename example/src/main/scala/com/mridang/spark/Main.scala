@@ -10,6 +10,6 @@ object Main extends InitSpark {
       .load()
       .show()
 
-    close
+    close()
   }
 }

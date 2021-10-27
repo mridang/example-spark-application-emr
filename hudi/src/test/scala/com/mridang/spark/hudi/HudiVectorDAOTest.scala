@@ -11,6 +11,7 @@ import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
 import scala.util.Random.{nextFloat, nextInt, nextString}
 
+//noinspection HttpUrlsUsage
 @RunWith(classOf[JUnitRunner])
 class HudiVectorDAOTest
   extends FunSuite

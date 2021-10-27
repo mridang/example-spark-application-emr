@@ -18,7 +18,6 @@ public class MinioContainer extends GenericContainer<MinioContainer> {
     /**
      * MinIO Default version
      */
-    @Deprecated
     protected static final String DEFAULT_TAG = "latest";
     /**
      * MinIO Default HTTP port

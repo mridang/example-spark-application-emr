@@ -5,7 +5,7 @@ abstract class HiveAlignmentRule implements ComponentMetadataRule {
     @SuppressWarnings('GroovyMissingReturnStatement')
     void execute(ComponentMetadataContext ctx) {
         ctx.details.with {
-            if (id.group.startsWith("org.apache.hive") && !id.name.equals("hive-storage-api")) {
+            if (id.group.startsWith("org.apache.hive") && id.name != "hive-storage-api") {
                 // declare that Jackson modules all belong to the Jackson virtual platform
                 belongsTo("org.apache.hive:hive-virtual-platform:${id.version}")
             }

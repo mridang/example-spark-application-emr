@@ -3215,11 +3215,11 @@ task copyFiles {
     doLast {
         copy {
             into "$projectDir/docker/spark/master/jars"
-            from configurations.emr.minus(configurations.spark)
+            from configurations.emr - configurations.spark
         }
         copy {
             into "$projectDir/docker/spark/slave/jars"
-            from configurations.emr.minus(configurations.spark)
+            from configurations.emr - configurations.spark
         }
     }
 }
