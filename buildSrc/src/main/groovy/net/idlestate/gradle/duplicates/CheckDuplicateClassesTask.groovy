@@ -145,12 +145,6 @@ class CheckDuplicateClassesTask extends DefaultTask implements VerificationTask 
 
 
     static Collection<String> processArtifact(ResolvedArtifact artifact, CheckDuplicateClassesEngine engine) {
-        if (artifact.moduleVersion != null) {
-            //logger.info("    '${artifact.file.path}' of '${artifact.moduleVersion}'")
-        } else {
-            //logger.info("    '${artifact.file.path}'")
-        }
-
         if (!artifact.file.exists()) {
             throw new GradleException("File `$artifact.file.path` does not exist!!!")
         }

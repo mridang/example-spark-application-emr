@@ -25,10 +25,8 @@ trait InitSpark extends Logging {
     .config("spark.mongodb.output.uri", "mongodb://localhost:37017/test.xxx")
     .getOrCreate()
 
-  //sparkContext.getConf.getAll.foreach(xxx => println(xxx._1 + ": " + xxx._2))
-
   val sparkContext: SparkContext = InitSpark.setupContext(spark.sparkContext)
-  val sqlContext: SQLContext = new SQLContext(sparkContext)
+  val sqlContext: SQLContext = SparkSession.builder().getOrCreate().sqlContext
 
   def initSession(): Void => SparkSession = {
     _ => spark

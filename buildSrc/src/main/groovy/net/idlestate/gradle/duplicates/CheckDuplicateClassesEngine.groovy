@@ -108,7 +108,7 @@ class CheckDuplicateClassesEngine {
         try {
             new ZipFile(artifactFile).entries().findAll { isValidEntry(it, excludePattern, includePattern) }.
                     collect { it.name }
-        } catch (ZipException e) {
+        } catch (ZipException ignored) {
             logger.log(LogLevel.WARN, "File {} is not a valid unzippable artifact.", artifactFile.name)
             Collections.emptyList()
         }

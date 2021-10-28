@@ -21,6 +21,7 @@ object HudiVectorRDD {
   }
 }
 
+//noinspection ScalaStyle
 class HudiVectorRDD(@(transient @param) sqlContext: SQLContext,
                     accountIds: Seq[String])
   extends Serializable {

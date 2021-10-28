@@ -2,7 +2,7 @@ package com.mridang.spark.tensorflow
 
 import org.apache.spark.{SparkContext, SparkFiles}
 import org.apache.spark.scheduler.{SparkListener, SparkListenerApplicationEnd, SparkListenerApplicationStart}
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.tensorflow.Session
 
 trait TensorflowSparkListener extends SparkListener {
@@ -13,8 +13,7 @@ trait TensorflowSparkListener extends SparkListener {
 
   @transient def sparkContext: SparkContext
 
-
-  val sqlContext: SQLContext = new SQLContext(sparkContext)
+  val sqlContext: SQLContext = SparkSession.builder().getOrCreate().sqlContext
 
   sparkContext.addSparkListener(listener = this)
 
