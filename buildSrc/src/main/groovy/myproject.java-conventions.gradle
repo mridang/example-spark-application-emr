@@ -89,9 +89,9 @@ task scaladocJar(type: Jar, dependsOn: scaladoc) {
     from scaladoc.destinationDir
 }
 
-artifacts {
-    archives sourcesJar
-    archives scaladocJar
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 // Task for building the zip file for upload
