@@ -7,11 +7,12 @@ import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterEach, FunSuite, Ignore}
 
 import scala.util.Random.{nextFloat, nextInt, nextString}
 
 //noinspection HttpUrlsUsage
+@Ignore
 @RunWith(classOf[JUnitRunner])
 class HudiVectorDAOTest
   extends FunSuite
