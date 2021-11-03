@@ -3203,12 +3203,8 @@ dependencies {
     
 }
 
-application {
-    mainClass = 'org.gradle.sample.Main'
-}
-
-shadowJar.enabled = false
-buildZip.enabled = false
+//shadowJar.enabled = false
+//buildZip.enabled = false
 
 task copyFiles {
     dependsOn 'build'

@@ -58,7 +58,3 @@ dependencies {
     testImplementation group: 'com.dimafeng', name: 'testcontainers-scala-scalatest_2.12', version: '0.39.5'
     testImplementation group: 'com.holdenkarau', name: "spark-testing-base_${scalaVersion}", version: "${sparkVersion}_1.1.0"
 }
-
-application {
-    mainClass = 'org.gradle.sample.Main'
-}

@@ -53,7 +53,3 @@ dependencies {
     implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'macosx-x86_64'
     implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'linux-x86_64'
 }
-
-application {
-    mainClass = 'org.gradle.sample.Main'
-}

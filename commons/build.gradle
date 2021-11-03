@@ -20,10 +20,6 @@ repositories {
     }
 }
 
-application {
-    mainClass = 'org.gradle.sample.Main'
-}
-
 dependencies {
     modules {
         module('com.sun.jersey:jersey-server') {

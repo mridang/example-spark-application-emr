@@ -7,13 +7,13 @@ repositories {
     mavenCentral()
     gradlePluginPortal()
 }
-    
+
 dependencies {
-    implementation "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
-    implementation "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
-    implementation "com.diffplug.spotless:spotless-plugin-gradle:5.12.4"
-    implementation "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.7.1"
-    implementation "net.ltgt.gradle:gradle-errorprone-plugin:2.0.1"
-    implementation "net.ltgt.gradle:gradle-nullaway-plugin:1.1.0"
-    implementation "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
+    implementation group: 'gradle.plugin.com.github.jengelman.gradle.plugins', name: 'shadow', version: '7.0.0'
+    implementation group: 'com.github.alisiikh', name: 'gradle-scalastyle-plugin', version: '3.4.1'
+    implementation group: 'com.diffplug.spotless', name: 'spotless-plugin-gradle', version: '5.12.4'
+    implementation group: 'gradle.plugin.com.github.spotbugs.snom', name: 'spotbugs-gradle-plugin', version: '4.7.1'
+    implementation group: 'net.ltgt.gradle', name: 'gradle-errorprone-plugin', version: '2.0.1'
+    implementation group: 'net.ltgt.gradle', name: 'gradle-nullaway-plugin', version: '1.1.0'
+    implementation group: 'gradle.plugin.com.dorongold.plugins', name: 'task-tree', version: '1.5'
 }

@@ -1,25 +1,21 @@
+//file:noinspection GrUnresolvedAccess
+//file:noinspection GroovyAssignabilityCheck
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'scalaStyle'
     id 'scala'
-    id "com.github.spotbugs"
     id 'maven-publish'
     id 'java-library'
+    id "jacoco"
+    id "com.github.alisiikh.scalastyle"
+    id "com.github.johnrengelman.shadow"
     id 'com.diffplug.spotless'
-    id 'net.ltgt.errorprone'
+    id "com.github.spotbugs"
+    id "net.ltgt.errorprone"
     id 'net.ltgt.nullaway'
     id "com.dorongold.task-tree"
-    id "jacoco"
-    id "application"
-    id 'com.github.johnrengelman.shadow'
-}
-
-dependencies {
-    errorprone group: 'com.uber.nullaway', name: 'nullaway', version: '0.9.1'
-    errorprone (group: 'com.google.errorprone', name: 'error_prone_core', version: '2.7.1') {
-        exclude group: 'org.checkerframework', module: "dataflow-shaded"
-    }
 }
 
 repositories {
@@ -27,6 +23,13 @@ repositories {
     maven {
         url 'https://maven.onehippo.com/maven2/'
     }
+}
+
+dependencies {
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+    testRuntimeOnly group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.2.0'
+    errorprone group: 'com.uber.nullaway', name: 'nullaway', version: '0.7.9'
+    errorprone group: 'com.google.errorprone', name: 'error_prone_core', version: '2.3.4'
 }
 
 // Configuration for the nullaway extension. The rest of the parameters must be
@@ -40,8 +43,8 @@ nullaway {
 // Configuration for the Scalastyle plugin. It seems that it isn't possible to define
 // the output report formats here and those seem to be defined on the individual
 // task level.
-scalaStyle {
-    configLocation "project/scalastyle_config.xml"
+scalastyle {
+    config file("$rootDir/gradle/config/scalastyle/scalastyle_config.xml")
 }
 
 // Configuration for the Jacoco plugin. It seems that it isn't possible to define
@@ -63,13 +66,13 @@ jacocoTestReport {
 }
 
 test {
-    testLogging {
-        events "PASSED", "SKIPPED", "FAILED"
-    }
+    useJUnitPlatform()
+    testLogging.events.addAll([TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED])
     reports {
         junitXml.enabled = true
         html.enabled = true
     }
+    maxParallelForks = (int) (Runtime.runtime.availableProcessors() / 2 + 1)
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 

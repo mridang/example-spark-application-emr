@@ -48,10 +48,6 @@ dependencies {
     testImplementation group: 'com.dimafeng', name: "testcontainers-scala-mongodb_${scalaVersion}", version: '0.39.5'
 }
 
-application {
-    mainClass = 'org.gradle.sample.Main'
-}
-
 //noinspection UnnecessaryQualifiedReference
 task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
     excludes(['LICENSE', 
