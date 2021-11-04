@@ -7,12 +7,11 @@ import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.{BeforeAndAfterEach, FunSuite, Ignore}
+import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
 import scala.util.Random.{nextFloat, nextInt, nextString}
 
 //noinspection HttpUrlsUsage
-@Ignore
 @RunWith(classOf[JUnitRunner])
 class HudiVectorDAOTest
   extends FunSuite
@@ -70,7 +69,11 @@ class HudiVectorDAOTest
       .delete(new Path(s"s3://$bucketName/"), true)
   }
 
-  test("that saving and querying a single merchant works as expected") {
+  test("that") {
+    
+  }
+
+  ignore("that saving and querying a single merchant works as expected") {
     resetBucket("image-vectors")
 
     val rdd: RDD[ImageVectors] = {
