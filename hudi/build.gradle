@@ -18,6 +18,14 @@ repositories {
             password = project.findProperty("githubPassword") ?: System.getenv("GITHUB_TOKEN")
         }
     }
+    maven {
+        name = "olsi"
+        url = uri("https://maven.pkg.github.com/olsi-qose/testcontainers-minio")
+        credentials {
+            username = project.findProperty("githubUsername") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("githubPassword") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -56,5 +64,6 @@ dependencies {
         exclude group: 'com.github.stephenc.findbugs', module: 'findbugs-annotations'
     }
     testImplementation group: 'com.dimafeng', name: 'testcontainers-scala-scalatest_2.12', version: '0.39.5'
+    testImplementation group: 'org.testcontainers', name: 'scala-minio', version: '1.16.0'
     testImplementation group: 'com.holdenkarau', name: "spark-testing-base_${scalaVersion}", version: "${sparkVersion}_1.1.0"
 }

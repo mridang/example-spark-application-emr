@@ -66,5 +66,10 @@
       <option name="name" value="maven" />
       <option name="url" value="https://maven.onehippo.com/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="mridang2" />
+      <option name="name" value="mridang2" />
+      <option name="url" value="https://maven.pkg.github.com/olsi-qose/testcontainers-minio" />
+    </remote-repository>
   </component>
 </project>
