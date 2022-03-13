@@ -40,8 +40,10 @@
         <module name="glowplug.tensorflow.main" />
         <module name="glowplug.commons.main" />
         <module name="glowplug.hudi.test" />
+        <module name="glowplug.streaming.test" />
         <module name="glowplug.emr.test" />
         <module name="glowplug.hudi.main" />
+        <module name="glowplug.streaming.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />

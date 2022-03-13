@@ -4,5 +4,5 @@ include 'commons'
 include 'example'
 include 'hudi'
 include 'tensorflow'
-include 'tensorflow'
+include 'streaming'
 

@@ -17,13 +17,16 @@ object InitSpark {
 }
 
 trait InitSpark extends Logging {
-  val spark: SparkSession = SparkSession.builder()
-    .appName("Spark example")
-    .master("local[*]")
-    .config("option", "some-value")
-    .config("spark.mongodb.input.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
-    .config("spark.mongodb.output.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
-    .getOrCreate()
+    val spark: SparkSession = SparkSession.builder()
+      .appName("Spark example")
+      .master("local[*]")
+      .config("option", "some-value")
+      .config("spark.mongodb.input.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
+      .config("spark.mongodb.output.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
+      .config("es.index.auto.create", "true")
+      .config("es.nodes","localhost:9200")
+      .config("es.nodes.wan.only", "true")
+      .getOrCreate()
 
   val sparkContext: SparkContext = InitSpark.setupContext(spark.sparkContext)
   val sqlContext: SQLContext = SparkSession.builder().getOrCreate().sqlContext

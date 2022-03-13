@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/example" />
             <option value="$PROJECT_DIR$/hudi" />
             <option value="$PROJECT_DIR$/tensorflow" />
+            <option value="$PROJECT_DIR$/streaming" />
           </set>
         </option>
       </GradleProjectSettings>

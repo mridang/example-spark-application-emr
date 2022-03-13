@@ -53,3 +53,42 @@ dependencies {
     implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'macosx-x86_64'
     implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.4', classifier: 'linux-x86_64'
 }
+
+//noinspection UnnecessaryQualifiedReference
+task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
+    excludes(['LICENSE',
+              'NOTICE',
+              '.gitkeep',
+              'git.properties',
+              'plugin.xml',
+              '\\.options',
+              '.api_description',
+              'jetty-dir.css',
+              'yarn-default.xml',
+              'plugin.properties',
+              'log4j-surefire-quiet.properties',
+              'log4j-surefire.properties',
+              'encoding.properties',
+              'log4j.properties',
+              '^com/sun/.*',
+              '^javax/.*',
+              '^org/slf4j/*',
+              '^org/apache/commons/*',
+              'org/aopalliance/*',
+              'codegen/config.fmpp',
+              '.proto$',
+              'webapps/static/.*',
+              'spire/scalacompat/BuilderCompat.class',
+              'spire/scalacompat/package\\$.class',
+              'spire/scalacompat/package\\$FactoryCompatOps.class',
+              'spire/scalacompat/IterableLikeCompat.class',
+              'spire/scalacompat/ScalaOrderingWrapperCompat.class',
+              'spire/scalacompat/package.class',
+              'org/apache/spark/unused/UnusedStubClass.class',
+              'org/apache/jasper/compiler/Localizer.class',
+              'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class',
+              'org/apache/hadoop/hive/common/ValidReadTxnList.class',
+              'org/apache/hadoop/hive/common/ValidTxnList.class',
+              'org/fusesource/hawtjni/runtime/.*.class'])
+    configurationsToCheck(configurations.runtimeClasspath)
+}
