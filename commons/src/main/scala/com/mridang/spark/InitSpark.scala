@@ -26,6 +26,7 @@ trait InitSpark extends Logging {
       .config("es.index.auto.create", "true")
       .config("es.nodes","localhost:9200")
       .config("es.nodes.wan.only", "true")
+      .config("es.spark.sql.streaming.sink.log.enabled", "false")
       .getOrCreate()
 
   val sparkContext: SparkContext = InitSpark.setupContext(spark.sparkContext)

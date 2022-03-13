@@ -3,8 +3,6 @@ package com.mridang.spark.streaming.kinesis.sink.elastic
 import com.mridang.spark.InitSpark
 import org.apache.spark.sql.DataFrame
 
-case class Trip(departure: String, arrival: String)
-
 /**
  * A Spark example that demonstrates how structured streaming can be used to stream files 
  * from a directory and index them into Elasticsearch.
@@ -14,9 +12,18 @@ case class Trip(departure: String, arrival: String)
  * A real world use case would be to consume product updates from Kinesis and index
  * to OpenSearch.
  * 
- * @author mridang
+ * Remember to start Elasticsearch locally using this command:
  * 
+ * <pre>
+ * docker run --detach --publish 9400:9200 elasticsearch:8.1.0
+ * </pre>
+ * 
+ * Read:
+ * <a>
  * https://elastic.co/guide/en/elasticsearch/hadoop/master/spark.html#spark-sql-streaming-write
+ * </a>
+ * 
+ * @author mridang
  */
 object SaveToElastic extends InitSpark {
 
@@ -34,7 +41,8 @@ object SaveToElastic extends InitSpark {
       }
       .writeStream
       .outputMode(outputMode = "append")
-      .format(source = "console")
+      .format(source = "es")
+      .option("checkpointLocation", "/tmp")
       .start("spark/people")
       .awaitTermination()
   }
