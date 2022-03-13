@@ -10,6 +10,7 @@
               <entry key="defaultNotebookName" value="rO0ABXQAE0lERUFfUGx1Z2luL2RlZmF1bHQ=" />
               <entry key="enableBasicAuth" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="enableIntellijIntegration" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
+              <entry key="enableOnDemandZtools" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="enableProxy" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="hadoopVersion" value="rO0ABXQABTMuMi4x" />
               <entry key="notifyAfter" value="rO0ABXNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAA8" />
@@ -22,6 +23,8 @@
               <entry key="sparkVersion" value="rO0ABXQABTMuMC4x" />
               <entry key="systemNotificationEnabled" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
               <entry key="tunnel" value="rO0ABXNyAEpjb20uamV0YnJhaW5zLmJpZ2RhdGF0b29scy5jb25uZWN0aW9uLnR1bm5lbC5tb2RlbC5Db25uZWN0aW9uU3NoVHVubmVsSW5mb4g0ot7wzEpsAgAEWgAJaXNFbmFibGVkSQAKcmVtb3RlUG9ydEwACGNvbmZpZ0lkdAASTGphdmEvbGFuZy9TdHJpbmc7TAAKcmVtb3RlSG9zdHEAfgABeHAA/////3QAAHEAfgAD" />
+              <entry key="ztoolsDfsSameNoteOnly" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
+              <entry key="ztoolsSqlSameNoteOnly" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
             </map>
           </option>
           <option name="fqn" value="com.intellij.bigdatatools.zeppelin.settings.ZeppelinConnectionData" />
@@ -59,9 +62,12 @@
           <option name="extended">
             <map>
               <entry key="activeAuthenticationType" value="rO0ABXQAIkV4cGxpY2l0IGFjY2VzcyBrZXkgYW5kIHNlY3JldCBrZXk=" />
+              <entry key="bucketFilter" value="rO0ABXQACGdsb3dwbHVn" />
+              <entry key="bucketFilterType" value="rO0ABX5yADdvcmcuamV0YnJhaW5zLmhkZnNwbHVnaW4uaGRmcy5zZXR0aW5ncy5CdWNrZXRGaWx0ZXJUeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAIQ09OVEFJTlM=" />
               <entry key="bucketName" value="rO0ABXQACGdsb3dwbHVn" />
               <entry key="endpoint" value="rO0ABXQAHiBodHRwOi8vbWluaW8uZG9ja2VyLmxvY2FsaG9zdA==" />
               <entry key="isDisableSocketProxy" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
+              <entry key="isMultiBucketSupport" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
               <entry key="isPreemptiveBasicProxyAuth" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="nonProxyHosts" value="rO0ABXQAAA==" />
               <entry key="profileCredentialsPath" value="rO0ABXQAAA==" />
@@ -72,7 +78,7 @@
               <entry key="proxyHost" value="rO0ABXQAAA==" />
               <entry key="proxyPort" value="rO0ABXNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAABQ" />
               <entry key="proxyWorkstation" value="rO0ABXQAAA==" />
-              <entry key="rootPath" value="rO0ABXQAAS8=" />
+              <entry key="tunnel" value="rO0ABXNyAEpjb20uamV0YnJhaW5zLmJpZ2RhdGF0b29scy5jb25uZWN0aW9uLnR1bm5lbC5tb2RlbC5Db25uZWN0aW9uU3NoVHVubmVsSW5mb4g0ot7wzEpsAgAEWgAJaXNFbmFibGVkSQAKcmVtb3RlUG9ydEwACGNvbmZpZ0lkdAASTGphdmEvbGFuZy9TdHJpbmc7TAAKcmVtb3RlSG9zdHEAfgABeHAA/////3QAAHEAfgAD" />
             </map>
           </option>
           <option name="fqn" value="org.jetbrains.hdfsplugin.hdfs.settings.MinioConnectionData" />

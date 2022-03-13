@@ -21,8 +21,8 @@ trait InitSpark extends Logging {
     .appName("Spark example")
     .master("local[*]")
     .config("option", "some-value")
-    .config("spark.mongodb.input.uri", "mongodb://localhost:37017/test.xxx")
-    .config("spark.mongodb.output.uri", "mongodb://localhost:37017/test.xxx")
+    .config("spark.mongodb.input.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
+    .config("spark.mongodb.output.uri", "mongodb://prod-mongodb-analytics1.us-east-1.nos.to:27017/cart.xxx")
     .getOrCreate()
 
   val sparkContext: SparkContext = InitSpark.setupContext(spark.sparkContext)

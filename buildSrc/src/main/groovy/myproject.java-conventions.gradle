@@ -199,7 +199,7 @@ shadowJar {
 //noinspection GroovyAssignabilityCheck
 build {
     dependsOn buildZip
-    //dependsOn shadowJar
+    dependsOn shadowJar
 }
 
 afterEvaluate {
