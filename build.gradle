@@ -1,0 +1,22 @@
+plugins {
+    id 'myproject.java-conventions'
+    id 'myproject.scala-conventions'
+}
+
+//dependencies {
+//    implementation project('emr')
+//    implementation project('commons')
+//    implementation project('example')
+//    implementation project('hudi')
+//    implementation project('tensorflow')
+//    implementation project('streaming')
+//}
+
+java {
+    sourceCompatibility "11"
+    targetCompatibility "11"
+}
+
+checkForDuplicateClasses {
+    excludes(['.*'])
+}

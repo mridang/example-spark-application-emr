@@ -4,9 +4,10 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -15,8 +16,8 @@
             <option value="$PROJECT_DIR$/emr" />
             <option value="$PROJECT_DIR$/example" />
             <option value="$PROJECT_DIR$/hudi" />
-            <option value="$PROJECT_DIR$/tensorflow" />
             <option value="$PROJECT_DIR$/streaming" />
+            <option value="$PROJECT_DIR$/tensorflow" />
           </set>
         </option>
       </GradleProjectSettings>

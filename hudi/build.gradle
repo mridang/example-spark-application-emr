@@ -1,5 +1,11 @@
 plugins {
     id 'myproject.java-conventions'
+    id 'myproject.scala-conventions'
+}
+
+java {
+    sourceCompatibility "11"
+    targetCompatibility "11"
 }
 
 repositories {
@@ -68,8 +74,7 @@ dependencies {
     testImplementation group: 'com.holdenkarau', name: "spark-testing-base_${scalaVersion}", version: "${sparkVersion}_1.1.0"
 }
 
-//noinspection UnnecessaryQualifiedReference
-task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
+checkForDuplicateClasses {
     excludes(['LICENSE',
               'NOTICE',
               '.gitkeep',
@@ -104,5 +109,4 @@ task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
               'org/apache/hadoop/hive/common/ValidReadTxnList.class',
               'org/apache/hadoop/hive/common/ValidTxnList.class',
               'org/fusesource/hawtjni/runtime/.*.class'])
-    configurationsToCheck(configurations.runtimeClasspath)
 }

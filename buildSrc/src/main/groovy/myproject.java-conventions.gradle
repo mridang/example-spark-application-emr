@@ -1,50 +1,50 @@
-//file:noinspection GrUnresolvedAccess
-//file:noinspection GroovyAssignabilityCheck
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'scala'
     id 'maven-publish'
     id 'java-library'
+    id 'java-test-fixtures'
     id "jacoco"
-    id "com.github.alisiikh.scalastyle"
     id "com.github.johnrengelman.shadow"
     id 'com.diffplug.spotless'
     id "com.github.spotbugs"
     id "net.ltgt.errorprone"
     id 'net.ltgt.nullaway'
     id "com.dorongold.task-tree"
+    id 'net.idlestate.gradle-duplicate-classes-check'
+    id "org.jetbrains.qodana"
+    //id "org.jetbrains.intellij"
+    id "com.github.hierynomus.license-report"
+    id "io.snyk.gradle.plugin.snykplugin"
 }
 
 repositories {
     mavenCentral()
     maven {
-        url 'https://maven.onehippo.com/maven2/'
+        url "https://maven.onehippo.com/maven2/"
+    }
+    maven {
+        name = "mridang"
+        url = uri("https://maven.pkg.github.com/nosto/beanie")
+        credentials {
+            username = project.findProperty("githubUsername") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("githubPassword") ?: System.getenv("GITHUB_TOKEN")
+        }
     }
 }
 
 dependencies {
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
-    testRuntimeOnly group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.2.0'
-    errorprone group: 'com.uber.nullaway', name: 'nullaway', version: '0.7.9'
-    errorprone group: 'com.google.errorprone', name: 'error_prone_core', version: '2.3.4'
+    errorprone group: 'com.uber.nullaway', name: 'nullaway', version: '0.9.6'
+    errorprone group: 'com.google.errorprone', name: 'error_prone_core', version: '2.12.1'
+    spotbugsPlugins group: 'com.h3xstream.findsecbugs', name: 'findsecbugs-plugin', version: '1.12.0'
+    //checkstyle group: 'io.spring.nohttp', name: 'nohttp-checkstyle', version: '0.0.10'
 }
 
 // Configuration for the nullaway extension. The rest of the parameters must be
 // specified on the java-compile tasks. The only option that be specified here
 // is the name of the root package to be analysed.
 nullaway {
-    //noinspection GrUnresolvedAccess
-    annotatedPackages.add("com.mridang")
-}
-
-// Configuration for the Scalastyle plugin. It seems that it isn't possible to define
-// the output report formats here and those seem to be defined on the individual
-// task level.
-scalastyle {
-    config file("$rootDir/gradle/config/scalastyle/scalastyle_config.xml")
+    annotatedPackages.add("com.nosto")
 }
 
 // Configuration for the Jacoco plugin. It seems that it isn't possible to define
@@ -53,24 +53,36 @@ scalastyle {
 // I'm not sure why the tool version is defined here and it isn't managed as a
 // dependency.
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "0.8.8"
 }
 
 // We only need the XML report so that the CI tools can parse it. The HTML isn't needed.
 jacocoTestReport {
     reports {
-        csv.enabled = true
-        xml.enabled = false
-        html.enabled = true
+        csv {
+            enabled true
+        }
+        xml {
+            enabled false
+        }
+        html {
+            enabled true
+        }
     }
 }
 
 test {
     useJUnitPlatform()
-    testLogging.events.addAll([TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED])
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
     reports {
-        junitXml.enabled = true
-        html.enabled = true
+        junitXml {
+            enabled true
+        }
+        html {
+            enabled true
+        }
     }
     maxParallelForks = (int) (Runtime.runtime.availableProcessors() / 2 + 1)
     finalizedBy jacocoTestReport // report is always generated after tests run
@@ -84,21 +96,14 @@ javadoc {
     options.addBooleanOption('html5', true)
 }
 
-scaladoc {
-    scalaDocOptions.additionalParameters = ['-no-link-warnings']
-}
-
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier.set("sources")
     from sourceSets.main.allSource
 }
 
-task scaladocJar(type: Jar, dependsOn: scaladoc) {
-    archiveClassifier.set("javadoc")
-    from scaladoc.destinationDir
-}
-
 java {
+    sourceCompatibility '17'
+    targetCompatibility '17'
     withSourcesJar()
     withJavadocJar()
 }
@@ -109,30 +114,34 @@ java {
 // I'm not sure why the tool version is defined here and it isn't managed as a
 // dependency.
 spotbugs {
-    //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
-    toolVersion = '4.0.2'
-    //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
+    toolVersion = '4.6.0'
     ignoreFailures = true
-    //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
     effort = 'max'
     // Exclude all *.scala files as Spotbugs doesn't work too well with Scala.
-    //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
     excludeFilter = file("$rootDir/gradle/config/spotbugs/exclude.xml")
 }
 
 // We only need the XML report so that the CI tools can parse it. The HTML isn't needed.
 spotbugsMain {
-    //noinspection GroovyAssignabilityCheck
     reports {
-        xml.enabled = true
+        sarif {
+            enabled true
+        }
+        xml {
+            enabled true
+        }
     }
 }
 
 // We only need the XML report so that the CI tools can parse it. The HTML isn't needed.
 spotbugsTest {
-    //noinspection GroovyAssignabilityCheck
     reports {
-        xml.enabled = true
+        sarif {
+            enabled true
+        }
+        xml {
+            enabled true
+        }
     }
 }
 
@@ -142,7 +151,7 @@ spotbugsTest {
 // I'm not sure why the tool version is defined here and it isn't managed as a
 // dependency.
 checkstyle {
-    toolVersion "7.6.1"
+    toolVersion "10.1"
     config rootProject.resources.text.fromFile("gradle/config/checkstyle/checkstyle.xml")
 }
 
@@ -150,16 +159,24 @@ checkstyle {
 // and must be explicitly disabled
 checkstyleMain {
     reports {
-        xml.enabled = true
-        html.enabled = false
+        xml {
+            enabled true
+        }
+        html {
+            enabled false
+        }
     }
 }
 
 // We only need the XML report so that the CI tools can parse it. The HTML isn't needed.
 checkstyleTest {
     reports {
-        xml.enabled = true
-        html.enabled = false
+        xml {
+            enabled true
+        }
+        html {
+            enabled false
+        }
     }
 }
 
@@ -170,42 +187,42 @@ task buildZip(type: Zip) {
     from compileJava
     from processResources
     into('lib') {
-        from configurations.runtimeClasspath
+        from configurations.runtimeClasspath //TODO: Check for imagevector
     }
 }
 
 shadowJar {
     zip64 true
-    dependencies {
-        exclude({
-            var boolean skip = project.project(":emr").configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
-                    .findAll {
-                        artifact -> artifact.owner.id.group == it.moduleGroup
-                    }.findAll {
-                artifact -> artifact.owner.id.name == it.moduleName
-            }
-                    .findAll {
-                        artifact -> artifact.owner.version == it.moduleVersion
-                    }
-                    .any()
-            if (!skip) {
-                logger.debug(it.moduleGroup + ":" + it.moduleName + ":" + it.moduleVersion)
-            }
-            skip
-        })
-    }
 }
 
-//noinspection GroovyAssignabilityCheck
 build {
     dependsOn buildZip
-    dependsOn shadowJar
 }
 
-afterEvaluate {
-    configurations.all {
-        if (name.startsWith("incrementalScalaAnalysis")) {
-            extendsFrom = []
-        }
-    }
+qodana {
+    saveReport = true
+}
+
+
+checkForDuplicateClasses {
+    dependsOn assemble
+    excludes(['LICENSE',
+              '^com/sun/.*',
+              '^javax/.*',
+              '^org/apache/commons/logging/*',
+    ])
+    configurationsToCheck configurations.runtimeClasspath
+}
+
+
+downloadLicenses {
+    dependencyConfiguration = 'implementation'
+    includeProjectDependencies = true
+}
+
+configurations.implementation.setCanBeResolved(true)
+configurations.api.setCanBeResolved(true)
+
+snyk {
+    arguments = '--all-sub-projects --remote-repo-url=Nosto/fortknox --org=nosto'
 }
