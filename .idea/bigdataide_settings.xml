@@ -62,16 +62,19 @@
           <option name="extended">
             <map>
               <entry key="activeAuthenticationType" value="rO0ABXQAIkV4cGxpY2l0IGFjY2VzcyBrZXkgYW5kIHNlY3JldCBrZXk=" />
+              <entry key="bucket" value="rO0ABXQAAA==" />
               <entry key="bucketFilter" value="rO0ABXQACGdsb3dwbHVn" />
-              <entry key="bucketFilterType" value="rO0ABX5yADdvcmcuamV0YnJhaW5zLmhkZnNwbHVnaW4uaGRmcy5zZXR0aW5ncy5CdWNrZXRGaWx0ZXJUeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAIQ09OVEFJTlM=" />
+              <entry key="bucketFilterType" value="rO0ABX5yAEJvcmcuY29tLmpldGJyYWlucy5iaWdkYXRhdG9vbHMuZmlsZXN0b3JhZ2UuY29tbW9uLkJ1Y2tldEZpbHRlclR5cGUAAAAAAAAAABIAAHhyAA5qYXZhLmxhbmcuRW51bQAAAAAAAAAAEgAAeHB0AAhDT05UQUlOUw==" />
               <entry key="bucketName" value="rO0ABXQACGdsb3dwbHVn" />
               <entry key="endpoint" value="rO0ABXQAHiBodHRwOi8vbWluaW8uZG9ja2VyLmxvY2FsaG9zdA==" />
+              <entry key="isBucketSourceCustom" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
+              <entry key="isBucketSourceFromWorkspace" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="isDisableSocketProxy" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="isMultiBucketSupport" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAE=" />
               <entry key="isPreemptiveBasicProxyAuth" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="nonProxyHosts" value="rO0ABXQAAA==" />
-              <entry key="profileCredentialsPath" value="rO0ABXQAAA==" />
-              <entry key="profileName" value="rO0ABXQAAA==" />
+              <entry key="profileCredentialsPath" value="rO0ABXQAGi9Vc2Vycy9tcmlkYW5nLy5hd3MvY29uZmln" />
+              <entry key="profileName" value="rO0ABXQAB2RlZmF1bHQ=" />
               <entry key="proxyAuthEnabled" value="rO0ABXNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAA=" />
               <entry key="proxyDomain" value="rO0ABXQAAA==" />
               <entry key="proxyEnableType" value="rO0ABX5yADVjb20uamV0YnJhaW5zLmJpZ2RhdGF0b29scy5jb25uZWN0aW9uLlByb3h5RW5hYmxlVHlwZQAAAAAAAAAAEgAAeHIADmphdmEubGFuZy5FbnVtAAAAAAAAAAASAAB4cHQACERJU0FCTEVE" />

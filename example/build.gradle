@@ -1,5 +1,11 @@
 plugins {
     id 'myproject.java-conventions'
+    id 'myproject.scala-conventions'
+}
+
+java {
+    sourceCompatibility "11"
+    targetCompatibility "11"
 }
 
 repositories {
@@ -40,41 +46,39 @@ dependencies {
     testImplementation group: 'com.dimafeng', name: "testcontainers-scala-mongodb_${scalaVersion}", version: '0.39.5'
 }
 
-//noinspection UnnecessaryQualifiedReference
-task jarHell(type: net.idlestate.gradle.duplicates.CheckDuplicateClassesTask) {
-    excludes(['LICENSE', 
-              'NOTICE', 
-              '.gitkeep', 
-              'git.properties', 
-              'plugin.xml', 
-              '\\.options', 
-              '.api_description', 
+checkForDuplicateClasses {
+    excludes(['LICENSE',
+              'NOTICE',
+              '.gitkeep',
+              'git.properties',
+              'plugin.xml',
+              '\\.options',
+              '.api_description',
               'jetty-dir.css',
               'yarn-default.xml',
-              'plugin.properties', 
-              'log4j-surefire-quiet.properties', 
-              'log4j-surefire.properties', 
-              'encoding.properties', 
-              'log4j.properties', 
-              '^com/sun/.*', 
-              '^javax/.*', 
-              '^org/slf4j/*', 
-              '^org/apache/commons/*', 
-              'org/aopalliance/*', 
-              'codegen/config.fmpp', 
-              '.proto$', 
-              'webapps/static/.*', 
-              'spire/scalacompat/BuilderCompat.class', 
-              'spire/scalacompat/package\\$.class', 
-              'spire/scalacompat/package\\$FactoryCompatOps.class', 
-              'spire/scalacompat/IterableLikeCompat.class', 
-              'spire/scalacompat/ScalaOrderingWrapperCompat.class', 
+              'plugin.properties',
+              'log4j-surefire-quiet.properties',
+              'log4j-surefire.properties',
+              'encoding.properties',
+              'log4j.properties',
+              '^com/sun/.*',
+              '^javax/.*',
+              '^org/slf4j/*',
+              '^org/apache/commons/*',
+              'org/aopalliance/*',
+              'codegen/config.fmpp',
+              '.proto$',
+              'webapps/static/.*',
+              'spire/scalacompat/BuilderCompat.class',
+              'spire/scalacompat/package\\$.class',
+              'spire/scalacompat/package\\$FactoryCompatOps.class',
+              'spire/scalacompat/IterableLikeCompat.class',
+              'spire/scalacompat/ScalaOrderingWrapperCompat.class',
               'spire/scalacompat/package.class',
-              'org/apache/spark/unused/UnusedStubClass.class', 
-              'org/apache/jasper/compiler/Localizer.class', 
-              'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class', 
-              'org/apache/hadoop/hive/common/ValidReadTxnList.class', 
-              'org/apache/hadoop/hive/common/ValidTxnList.class', 
+              'org/apache/spark/unused/UnusedStubClass.class',
+              'org/apache/jasper/compiler/Localizer.class',
+              'org/apache/hadoop/hive/common/ValidTxnList\\$RangeResponse.class',
+              'org/apache/hadoop/hive/common/ValidReadTxnList.class',
+              'org/apache/hadoop/hive/common/ValidTxnList.class',
               'org/fusesource/hawtjni/runtime/.*.class'])
-    configurationsToCheck(configurations.runtimeClasspath)
 }
