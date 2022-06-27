@@ -25,6 +25,8 @@ class BatchPredictImages(@transient val sparkContext: SparkContext, @transient s
   //noinspection ScalaCustomHdfsFormat
   def run(): Unit = {
 
+    import sqlContext.implicits._
+
     sparkContext.addSparkListener(this)
     sparkContext.addFile(tensorflowModel.modelBundle, recursive = true)
 
