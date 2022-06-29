@@ -33,7 +33,7 @@ class BatchPredictImages(@transient val sparkContext: SparkContext, @transient s
     val vectorDF = sparkSession.read
       .format("binaryFile")
       .option("pathGlobFilter", "*.jpg")
-      .load("s3://tf-images/")
+      .load("s3a://temp-store-staging-root/")
       .map(row => {
         val data: Array[Byte] = row.getAs[Array[Byte]]("content")
         tensorflowModel.predict(tensorflowSession, data)
